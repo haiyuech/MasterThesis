@@ -1,0 +1,85 @@
+% UPenn Master's Thesis - PIVOT
+% Based on University of Pennsylvania Ph.D. Dissertation LaTeX Template v.20221216
+% Modified for Master of Science in Engineering
+%-------------------------------------------
+\documentclass[12pt]{report}
+\usepackage{upennstyle_master}
+
+%-------------------------------------------
+% Additional packages
+\usepackage[nonamebreak,numbers,sort&compress]{natbib}
+\bibliographystyle{ieeetr}
+\usepackage[mathcal]{eucal}
+
+\newcommand{\argminB}{\mathop{\mathrm{arg\,min}}}
+%-------------------------------------------
+
+%%%%% PRELIMINARY PAGES %%%%%
+\title{PIVOT: PHYSICS INFORMED AND VISION BASED ONLINE TUNING}
+\author{Haiyue Chen}
+\gradgroup{Robotics}
+\date{2026}
+\supervisor{Supervisor Name}
+\supervisortitle{Full Faculty Title, Department}
+\gradchair{Graduate Group Chairperson Name, Full Faculty Title}
+\committee{Committee Member 1, Full Faculty Title and Affiliation}
+\committee{Committee Member 2, Full Faculty Title and Affiliation}
+
+\authorlegal{Haiyue Chen}
+
+%\dedication{Write your dedication text in italics here.}
+
+\acknowledgement{Write your acknowledgement text here.}
+
+\abstract{Accurate dynamics models are essential for Model Predictive Control (MPC) of autonomous vehicles, yet the relationship between model architecture and closed-loop control performance remains poorly characterized. Fixed-parameter physics models require manual calibration and degrade when operating conditions change, while purely data-driven models demand large datasets and are sensitive to real-world sensor noise. This thesis presents PIVOT (Physics Informed and Vision Based Online Tuning), a framework that addresses these limitations through two contributions. First, PIVOT introduces the Learned Single-Track model (LST), which augments a nonlinear bicycle model with state-dependent multiplicative gains and additive biases predicted by a neural network. The network receives DINOv2 visual features as auxiliary input, allowing the dynamics to adapt to the current operating environment without explicit surface classification. Second, PIVOT provides a systematic comparison of seven dynamics models spanning three categories (fixed-parameter physics, physics-informed learned, and purely data-driven), all trained on identical trajectory data from a 1/5th-scale autonomous off-road race car. The evaluation comprises two stages: offline trajectory prediction on held-out data and closed-loop racing using Safe Information-Theoretic Learning MPC (SIT-LMPC). On the offline prediction task, the LST model achieves a pose loss of 0.573, reducing error by 2.2$\times$ compared to the best data-driven baseline (TCN, 1.242) and by 56\% compared to the fixed-parameter bicycle model (DST, 1.302). An ablation over input features reveals that LST maintains a pose loss of 0.514 even without visual input, while the data-driven models degrade by 1.4--2.4$\times$ under the same condition. These results indicate that the nonlinear physics structure in LST provides a strong inductive bias that improves both accuracy and robustness relative to less constrained architectures on noisy real-world data.}
+
+%-------------------------------------------
+\begin{document}
+
+%%% Title Page (page i, no number printed)
+\maketitle
+\setcounter{page}{2}
+
+%%% Dedication (optional)
+%\makededication
+
+%%% Acknowledgment (optional)
+\makeacknowledgement
+
+%%% Abstract (optional)
+\makeabstract
+
+%%% Table of Contents (mandatory for >= 50 pages)
+\tableofcontents
+
+%%% List of Tables (optional)
+\clearpage \phantomsection \addcontentsline{toc}{chapter}{LIST OF TABLES} \begin{singlespacing} \listoftables \end{singlespacing}
+
+%%% List of Illustrations (optional)
+%\clearpage \phantomsection \addcontentsline{toc}{chapter}{LIST OF ILLUSTRATIONS} \begin{singlespacing} \listoffigures \end{singlespacing}
+
+%%%%% MAIN TEXT %%%%%
+\begin{mainf}
+
+\input{sections/introduction}
+
+\input{sections/related_work}
+
+\input{sections/problem}
+
+\input{sections/method}
+
+\input{sections/control}
+
+\input{sections/experiments}
+
+\input{sections/conclusion}
+
+\end{mainf}
+
+%%%%% BIBLIOGRAPHY %%%%%
+\begin{bibliof}
+\bibliography{bibliography}
+\end{bibliof}
+
+\end{document}

@@ -1,0 +1,63 @@
+\chapter{Problem Formulation}
+\label{sec:problem}
+
+Consider a discrete-time controlled dynamical system. Let $t \in \mathbb{N}$ index discrete time steps, $s_t \in \mathcal{S} \subset \mathbb{R}^{n_s}$ denote the system state, and $a_t \in \mathcal{A} \subset \mathbb{R}^{n_a}$ the control input.
+
+\section{System Dynamics}
+
+The true system evolves according to unknown nonlinear dynamics:
+\begin{equation}
+  s_{t+1} = f^*(s_t, a_t) + w_t, \qquad w_t \sim \mathcal{W},
+  \label{eq:true-dynamics}
+\end{equation}
+where $f^*: \mathcal{S} \times \mathcal{A} \to \mathcal{S}$ is the true (unknown) dynamics function and $w_t$ represents process noise. The objective is to learn an approximate model $\hat{f}$ from data for predictive control.
+
+\section{Control Policy}
+
+At each time step, a model predictive controller generates actions according to
+\begin{equation}
+  a_t = \pi(s_t,\, \hat{f}) \in \mathcal{A},
+  \label{eq:policy}
+\end{equation}
+where $\hat{f}$ represents the learned dynamics model employed for prediction within the MPC optimization. The policy must satisfy actuation limits, safety constraints, and rate limits:
+\begin{equation}
+  a_t \in \mathcal{U}(s_t),
+  \qquad
+  g(s_t, a_t) \le 0,
+  \qquad
+  \|a_t - a_{t-1}\| \le \Delta_{\max},
+  \label{eq:policy-constraints}
+\end{equation}
+where $\mathcal{U}(s_t)$ defines state-dependent input bounds, $g$ encodes safety constraints (e.g., track boundaries, stability margins), and $\Delta_{\max}$ limits the control rate of change.
+
+\section{Training Dataset}
+
+An offline dataset of system trajectories is assumed available:
+\begin{equation}
+  \mathcal{D}_{\text{train}} = \{(s_\tau, a_\tau, s_{\tau+1})\}_{\tau=1}^{N},
+\end{equation}
+consisting of state-action-next-state tuples collected from the physical system. This dataset is collected once and remains fixed for training all models, constraining the comparison to model expressiveness rather than data availability.
+
+\section{Model Learning Problem}
+
+The central objective is to identify the model structure $\hat{f}$ that, when learned from $\mathcal{D}_{\text{train}}$, most effectively enables predictive control.
+
+Models of the form
+\begin{equation}
+  \hat{s}_{t+1} = \hat{f}(s_t, a_t;\, \phi),
+  \label{eq:learned-model}
+\end{equation}
+are considered, where $\phi$ represents learnable parameters. The model structure $\hat{f}$ ranges from fixed parametric physics-based equations, to physics-augmented models with state-dependent corrections, to fully learned function approximators with minimal structural constraints.
+
+All models minimize prediction error on $\mathcal{D}_{\text{train}}$:
+\begin{equation}
+  \phi^* = \arg\min_\phi \;\mathbb{E}_{(s,a,s') \in \mathcal{D}_{\text{train}}}\!\left[\mathcal{L}\big(s',\, \hat{f}(s, a;\, \phi)\big)\right].
+\end{equation}
+
+\section{Evaluation Objective}
+
+The learned model $\hat{f}$ is ultimately evaluated based on its utility for control, not prediction accuracy alone. Given the learned model and a model-based controller $\pi$, the objective is to maximize task performance while enforcing safety:
+\begin{equation}
+  \min_{\pi,\, \hat{f}} \;\mathbb{E}\!\left[\sum_{t=0}^{T} c(s_t, a_t)\right]
+\end{equation}
+subject to safety constraints $g(s_t, a_t) \le 0$ and control constraints~\eqref{eq:policy-constraints}, where $c$ is a stage cost (e.g., progress toward goal, lap time) and $T$ is the task horizon. This formulation underscores that the model yielding the lowest prediction error does not necessarily produce the best control performance, a distinction that motivates the two-stage evaluation adopted in this work.

@@ -1,0 +1,52 @@
+\chapter{Control and Evaluation Framework}
+\label{sec:control}
+
+All seven dynamics models are integrated into a unified control framework for evaluation. This chapter describes the sampling-based MPC controller employed for trajectory optimization (Section~\ref{sec:mppi}) and the iterative learning framework adopted for closed-loop evaluation (Section~\ref{sec:sitlmpc}).
+
+\section{Sampling-Based MPC (MPPI)}
+\label{sec:mppi}
+
+All models are integrated into an MPPI controller, a sampling-based MPC method that accommodates nonlinear dynamics and constraints without requiring gradients of the dynamics model.
+
+At each time step $t$, MPPI samples $K$ candidate control sequences $\{a^{(k)}_{t:t+H}\}_{k=1}^K$ from a distribution centered around the previous optimal sequence. Each candidate sequence is rolled out using the current dynamics model $\hat{f}$ to obtain predicted trajectories $\{\hat{s}^{(k)}_{t:t+H}\}_{k=1}^K$. Trajectories are scored via a cost function that combines tracking error, control effort, and constraint violations:
+\begin{equation}
+  J^{(k)} = \sum_{j=0}^{H} c(\hat{s}^{(k)}_{t+j},\, a^{(k)}_{t+j}) + \lambda \max\!\big(0,\, g(\hat{s}^{(k)}_{t+j})\big),
+\end{equation}
+where $c$ penalizes deviation from a reference path and excessive control magnitude, and $g$ encodes safety constraints such as track boundaries. The final control is computed as a cost-weighted average:
+\begin{equation}
+  a_t = \sum_{k=1}^K w^{(k)} a^{(k)}_t, \qquad w^{(k)} = \frac{\exp(-\gamma\, J^{(k)})}{\sum_{k'} \exp(-\gamma\, J^{(k')})},
+\end{equation}
+where $\gamma$ is a temperature parameter governing the sharpness of the weighting.
+
+Because MPPI requires only forward simulation of the dynamics model, it is compatible with all seven model architectures without modification. The fidelity of the dynamics model directly determines the quality of the sampled trajectory predictions and, consequently, the resulting control performance.
+
+\section{Safe Information-Theoretic Learning MPC (SIT-LMPC)}
+\label{sec:sitlmpc}
+
+To evaluate long-term learning performance, SIT-LMPC is adopted as a framework for safe iterative improvement. SIT-LMPC combines sampling-based optimization with iterative learning to progressively reduce lap times while maintaining safety through learned value functions from previous iterations.
+
+For every time step $k \in \overline{\mathbb{Z}}_{+}$, let $x^{l}(k)$, $u^{l}(k)$, and $w^{l}(k)$ denote the system state, control input, and stochastic disturbance at the $l$-th iteration. An iteration $l$ is \textit{feasible} if $x^{l}(k) \in \mathcal{X}$ and $u^{l}(k) \in \mathcal{U}$ for all $k \in \overline{\mathbb{Z}}_{+}$, and $\lim_{k \rightarrow \infty} x^{l}(k) \in \mathcal{T}$, the target set.
+
+Let $\mathcal{I}^l \triangleq \{ i \in [0, l] : \text{iteration } i \text{ is feasible}\}$ denote the set of indices of feasible iterations up to iteration $l$. The \textit{sampled safe set} $\mathcal{S}^l$ at iteration $l$ is formulated as
+\begin{equation}
+  \mathcal{S}^{l} \triangleq \left\{x^{i}(k) :\;  i \in \mathcal{I}^{l},\; k \in \overline{\mathbb{Z}}_{+} \right\},
+\end{equation}
+consisting of all states along feasible trajectories up to iteration $l$. The convex hull $\mathcal{CS}^l$ of $\mathcal{S}^l$ serves as a terminal constraint set.
+
+The $l$-th iteration cost is $J^{l}(x_0, u^{l}(\cdot)) \triangleq \sum_{k=0}^{\infty} h(x^{l}(k), u^{l}(k))$, and the $l$-th iteration value function is $V^l(x_0) \triangleq \mathbb{E}[J^{l}(x_0, u^{l}(\cdot))]$, which serves as the terminal cost.
+
+At each iteration $l$ and time $t$, SIT-LMPC solves the constrained finite-time optimal control problem:
+\begin{subequations}
+\label{eq:sitlmpc}
+\begin{align}
+  J_{\text{LMPC}}^{l}(x^{l}(t)) &\triangleq \min_{u^{l}_{\cdot \mid t}} \mathbb{E}\!\left[\sum_{k=t}^{t+T-1} h(x^{l}_{k \mid t},\, u^{l}_{k \mid t}) + V^{l}(x^{l}_{t+T \mid t})\right] \\
+  \text{s.t.} \quad & x^{l}_{k+1 \mid t} = f(x^{l}_{k \mid t},\, u^{l}_{k \mid t},\, w^{l}(k)), \quad k \in \{t, \ldots, t+T-1\} \\
+  & x^{l}_{t \mid t} \stackrel{\text{a.s.}}{=} x^{l}(t), \\
+  & x^{l}_{k \mid t} \in \mathcal{X},\quad u^{l}_{k \mid t} \in \mathcal{U} \quad \text{a.s.}, \quad k \in \{t, \ldots, t+T-1\}, \\
+  & x^{l}_{t+T \mid t} \in \mathcal{CS}^{l-1} \quad \text{a.s.},
+\end{align}
+\end{subequations}
+where $x^{l}_{k \mid t}$ and $u^{l}_{k \mid t}$ denote predicted states and inputs given measurement $x^{l}(t)$. The terminal constraint $x^{l}_{t+T \mid t} \in \mathcal{CS}^{l-1}$ enforces safety by requiring the predicted trajectory to terminate within the convex hull of previously demonstrated safe states.
+
+\paragraph{Integration with Learned Models.}
+Each of the seven dynamics models provides the forward prediction function $f$ in the SIT-LMPC formulation~\eqref{eq:sitlmpc}. The models are trained offline on $\mathcal{D}_{\text{train}}$ and deployed for online prediction without further adaptation. At each control cycle, the controller queries the dynamics model with the current state and candidate actions, rolls out trajectories utilizing the model, applies the terminal constraint derived from the learned safe set, and computes the cost-weighted optimal control. The models remain fixed during deployment, testing the robustness and generalization of each architecture from offline training data to online control under constrained real-time conditions.

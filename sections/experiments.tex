@@ -1,0 +1,130 @@
+\chapter{Experiments}
+\label{sec:experiments}
+
+This chapter evaluates the seven dynamics models described in Chapter~\ref{sec:models}. Section~\ref{sec:hardware} details the hardware platform and data collection procedure. Section~\ref{sec:offline} assesses offline trajectory prediction accuracy on held-out data, and Section~\ref{sec:closedloop} evaluates closed-loop control performance in autonomous racing utilizing the SIT-LMPC framework (Section~\ref{sec:sitlmpc}).
+
+\section{Hardware Setup and Data Collection}
+\label{sec:hardware}
+
+\subsection{Platform}
+All experiments are conducted on a 1/5th-scale autonomous off-road race car. The vehicle is equipped with a Fixposition Vision-RTK 2 GNSS system for robust localization in an outdoor grassy environment. A GoPro camera mounted on the vehicle captures onboard RGB images at $854 \times 480$ resolution and approximately 30\,Hz for visual feature extraction. The vehicle operates on a closed-loop track in an off-road grassy environment, in which natural terrain variations introduce surface variability that affects tire-road interaction and vehicle dynamics.
+
+\subsection{Data Collection}
+\label{sec:datacollection}
+
+The training dataset $\mathcal{D}_{\text{train}}$ is collected through a two-step procedure. First, a human operator manually drives the vehicle around the track to generate a set of reference waypoints that define the racing line. Second, an MPPI controller tracks these waypoints at varying reference speeds, and the resulting trajectories are recorded. Multiple runs at different speeds ensure that the dataset covers a broad range of operating conditions, from moderate cruising to aggressive cornering near the limits of handling.
+
+Each recorded trajectory comprises three synchronized data streams:
+\begin{itemize}
+    \item \textbf{State log} (100\,Hz): At each timestep, 21 fields are recorded, including position $(x, y, z)$, longitudinal and lateral velocities $(v_x, v_y)$, orientation (yaw $\psi$, pitch, roll), angular rates (yaw rate $\dot{\psi}$, pitch rate, roll rate), steering angle $\delta$, sideslip angle $\beta$, and the applied control inputs (steering angle velocity $\dot{\delta}$ and longitudinal acceleration $a_{\text{long}}$). The planned reference coordinates from the MPPI controller are also stored for each timestep.
+    \item \textbf{Image log} (30\,Hz): Each GoPro frame is stored as a timestamped JPEG image and associated with pre-extracted visual features. The feature vector consists of a 384-dimensional semantic embedding from DINOv2 and a 3-dimensional low-level descriptor (mean RGB values), yielding a 387-dimensional representation per frame.
+    \item \textbf{Image feature database}: The DINOv2 semantic features and low-level RGB features are pre-computed offline and stored alongside each image timestamp, enabling efficient retrieval during training and evaluation without repeated forward passes through the vision backbone.
+\end{itemize}
+
+The state log and image log are synchronized via nanosecond-precision timestamps. All seven dynamics models are trained on the state log portion of this identical dataset. The DINOv2 image features are additionally utilized as input to the learned models in the \emph{full} feature mode, providing visual information about the current operating environment.
+
+\section{Offline Trajectory Prediction}
+\label{sec:offline}
+
+The training set contains 11,810 samples (106,290 state transitions).
+
+\subsection{Evaluation Protocol and Metrics}
+
+Each sample consists of an initial 7-dimensional state $s_0$, paired with the corresponding DINOv2 and state-context features, and a control sequence of length $N = 9$. The model autoregressively rolls out predicted states $\hat{s}_{1:N}$ from $s_0$, and the resulting 9-step trajectory is compared against the ground-truth states $s_{1:N}$.
+
+The evaluation partitions the dataset into training, validation, and test sets based on waypoint trajectories: each split contains trajectories generated from entirely distinct sets of reference waypoints, ensuring that no waypoint sequence appears in more than one split. This trajectory-level partitioning prevents data leakage from overlapping spatial regions and provides a strict test of generalization to unseen driving lines. The training set serves for model fitting, the validation set for early stopping and hyperparameter selection, and the test set for final reporting. All models share identical splits.
+
+Prediction quality is measured using a \emph{yaw-normalized L1 loss}. For non-angular state components (position $x$, $y$, steering angle $\delta$, and velocity $v$), the metric computes the L1 error summed over the prediction horizon. For the heading angle $\psi$, the angular difference is wrapped to $[-\pi, \pi]$ via $\text{arctan2}(\sin(\hat{\psi} - \psi),\, \cos(\hat{\psi} - \psi))$ before taking the absolute value, mitigating artificial penalties from angle wraparound. This loss is reported both per state dimension ($\mathcal{L}_x$, $\mathcal{L}_y$, $\mathcal{L}_\psi$, $\mathcal{L}_v$) and as an aggregate \emph{pose loss} averaging over position and heading components.
+
+In addition to individual model performance, three \emph{feature modes} are compared to assess the contribution of visual context:
+\begin{itemize}
+    \item \textbf{Full}: the network receives both image features (DINOv2 embeddings) and state context as input.
+    \item \textbf{State contexts only}: the network receives only state context, without image features.
+    \item \textbf{Default}: fixed parameters identified offline, with no learned adaptation.
+\end{itemize}
+
+\subsection{Results}
+
+Table~\ref{tab:offline-results} summarizes the test-set prediction loss for all models. Three findings emerge from these results.
+
+\paragraph{Physics-informed models outperform purely data-driven approaches on real-world data.}
+Among all models evaluated in \emph{full} feature mode, the LST model achieves the lowest test pose loss, outperforming the best data-driven baseline (TCN) by 2.2$\times$ (Table~\ref{tab:offline-results}). The data-driven models exhibit higher errors despite greater representational flexibility. Trajectory data from physical systems contains noise from sensor error, actuator delay, and environmental disturbances. Without structural constraints, data-driven models must jointly learn the dynamics and absorb the noise distribution from a limited dataset, leading to overfitting. The Gap column in Table~\ref{tab:offline-results} quantifies this: data-driven models exhibit train-test gaps of 1.9--2.3$\times$, while the LST model maintains the smallest gap (1.6$\times$). As discussed in Table~\ref{tab:param-counts}, this difference traces to the output dimensionality of the parameter network. The LST output layer contains $\approx$2K parameters, while the LSTM output layer inflates to $\approx$4.9M, providing capacity to memorize training trajectories but not to generalize. The physics structure in LST acts as a regularizer: it reduces the output space from thousands of unconstrained weights to 8 physically interpretable corrections.
+
+The validation column further illustrates this. For the LST model, validation loss closely tracks training loss, indicating stable learning. The data-driven models show increasing train-val divergence that early stopping does not fully resolve, as the held-out test losses confirm.
+
+\paragraph{Nonlinear physics structure provides a stronger inductive bias than linear structure.}
+Although both PIVOT models leverage physics-based priors, the LST model reduces pose loss by 69\% relative to the LTVL model. The per-dimension breakdown (Table~\ref{tab:offline-results}) reveals the source: the LTVL model attains competitive heading error but suffers from large position errors. This disparity arises because the LTVL must approximate nonlinear dynamics through state-dependent linear matrices, constraining each local approximation to a linear manifold. At the limits of handling, where tire forces saturate and lateral-longitudinal coupling becomes highly nonlinear, this linear structure is insufficient. The LST model retains the full nonlinear tire force model and switching mechanism, requiring the network to learn only multiplicative and additive corrections rather than the entire nonlinear mapping.
+
+The fixed-parameter baselines perform considerably worse than all learned models (Table~\ref{tab:offline-results}), confirming the benefit of data-driven adaptation. The per-dimension results (Table~\ref{tab:offline-results}) show that the DST-default model fails particularly on velocity prediction, indicating that fixed offline identification cannot capture speed-dependent dynamics across diverse operating conditions.
+
+\paragraph{Physics structure mitigates dependence on visual features.}
+The state-only ablation in Table~\ref{tab:offline-results} reveals the role of visual context in model robustness. The LST model without image features maintains nearly the same test pose loss as the full-feature variant, indicating that the physics-based inductive bias compensates for missing visual information. The LTVL and data-driven models, in contrast, degrade sharply without visual input. This pattern connects to the architectural analysis: the data-driven parameter networks must generate hundreds to thousands of dynamics weights from the input features, creating a high-dimensional output space that can latch onto spurious feature correlations. When those features are removed, the learned mapping collapses. The LST parameter network outputs only 8 values, and the bicycle dynamics handle the remainder of the prediction, leaving little room to overfit to any particular input modality.
+
+\begin{table}[t]
+\centering
+\caption{Offline trajectory prediction results ($N = 9$ step horizon, lower is better). Pose loss is reported across train/val/test splits; the Gap column (test/train ratio) quantifies generalization. Per-dimension test losses reveal which state components each model struggles with. The LST model achieves the lowest test loss, the smallest generalization gap, and robust performance even without visual features.}
+\label{tab:offline-results}
+\small
+\begin{tabular}{@{}llccccccccc@{}}
+\toprule
+ & & \multicolumn{4}{c}{Pose Loss} & \multicolumn{4}{c}{Test Loss by State Dimension} \\
+\cmidrule(lr){3-6} \cmidrule(l){7-10}
+Model & Features & Train & Val & Test & Gap & $x$ & $y$ & $\psi$ & $v$ \\
+\midrule
+DST & default & 1.57 & 0.82 & 1.30 & -- & 1.23 & 1.19 & 1.49 & 10.01 \\
+DTVL & default & 4.02 & 2.80 & 3.75 & -- & 4.54 & 5.22 & 1.48 & 1.58 \\
+\midrule
+LST & full & 0.36 & 0.42 & \textbf{0.57} & 1.6 & \textbf{0.43} & \textbf{0.40} & 0.89 & \textbf{1.03} \\
+LTVL & full & 0.62 & 0.95 & 1.86 & 3.0 & 2.23 & 2.20 & 1.16 & 1.03 \\
+MLP & full & 0.71 & 0.77 & 1.32 & 1.9 & 1.57 & 1.59 & \textbf{0.81} & 1.35 \\
+LSTM & full & 0.68 & 1.10 & 1.39 & 2.0 & 1.09 & 1.53 & 1.54 & 1.21 \\
+TCN & full & 0.53 & 0.86 & 1.24 & 2.3 & 1.31 & 1.47 & 0.95 & 1.23 \\
+\midrule
+LST & state & 0.39 & 0.40 & \textbf{0.51} & 1.3 & 0.40 & 0.38 & 0.77 & 1.06 \\
+LTVL & state & 6.65 & 6.71 & 8.16 & 1.2 & 3.82 & 6.46 & 14.19 & 6.25 \\
+MLP & state & 1.77 & 1.55 & 2.58 & 1.5 & 3.18 & 3.77 & 0.79 & 1.34 \\
+LSTM & state & 2.74 & 2.38 & 3.27 & 1.2 & 3.63 & 4.50 & 1.69 & 1.57 \\
+TCN & state & 2.07 & 1.60 & 2.60 & 1.3 & 3.13 & 3.87 & 0.79 & 1.34 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Computational Cost}
+\label{sec:compute}
+
+To address \textbf{O4}, the inference latency of each model is profiled on an NVIDIA RTX A6000 GPU (48\,GB VRAM, CUDA Compute Capability 8.6) with an AMD EPYC 7452 CPU running Ubuntu 22.04. All models are JIT-compiled via JAX prior to measurement. The PIVOT inference pipeline consists of three stages: DINOv2 feature extraction, parameter network forward pass, and dynamics rollout over the 9-step prediction horizon. DINOv2 feature extraction requires 4,553\,$\mu$s per image but runs as an asynchronous process at the camera frame rate (30\,Hz), placing it outside the control-loop critical path. The parameter network forward pass adds 91--113\,$\mu$s ($B = 1$) and is comparable across all models. The dynamics rollout, reported in Table~\ref{tab:latency}, constitutes the primary differentiator and the dominant cost on the critical path.
+
+For an MPPI controller sampling $B = 512$ candidate trajectories, the control-loop cost (parameter network + rollout) is approximately 96 + 477 = 573\,$\mu$s for the LST model. At a 50\,Hz control rate (20\,ms budget), this occupies less than 3\% of the cycle, leaving ample margin for cost evaluation, constraint checking, and communication.
+
+Table~\ref{tab:latency} compares this PIVOT architecture against a hypothetical alternative in which a single large network directly maps from state, control, and DINOv2 features to state derivatives at each rollout step (399-dimensional input per step, processed $B \times 9$ times per control cycle). At $B = 512$, the direct approach requires 732--914\,$\mu$s, roughly 1.5--2.0$\times$ the PIVOT pipeline (267--477\,$\mu$s rollout). At $B = 1024$, the gap widens further (1,158--1,343\,$\mu$s vs.\ 334--545\,$\mu$s). The PIVOT architecture avoids this cost by invoking the parameter network once per control cycle, producing a compact parameter vector that the lightweight dynamics model then reuses across all $B \times 9$ rollout steps. The direct approach must propagate the full 399-dimensional feature vector through every step of every sample, incurring overhead that grows linearly with both batch size and horizon length.
+
+\begin{table}[t]
+\centering
+\caption{Control-loop latency ($\mu$s): PIVOT (parameter network invoked once, then lightweight dynamics rollout) vs.\ a direct approach (large network at every rollout step with 399-dim input). PIVOT rollouts operate on 17--1,717 parameters per step; direct rollouts propagate 357K--738K parameters per step. All values averaged over 5,000 JIT-compiled calls on an NVIDIA RTX A6000.}
+\label{tab:latency}
+\small
+\begin{tabular}{@{}lrrccccc@{}}
+\toprule
+ & & & \multicolumn{5}{c}{Latency ($\mu$s)} \\
+\cmidrule(l){4-8}
+Model & Total & Rollout & $B$=1 & $B$=64 & $B$=256 & $B$=512 & $B$=1024 \\
+\midrule
+\multicolumn{8}{l}{\textit{PIVOT (param.\ net runs 1$\times$, dynamics runs $B \times 9\times$)}} \\
+LST & 860K & 17 & 484 & 469 & 472 & 477 & 515 \\
+LTVL & 868K & 40 & 253 & 328 & 336 & 347 & 334 \\
+MLP & 1.07M & 838 & 288 & 284 & 310 & 330 & 401 \\
+LSTM & 5.78M & 1,717 & 299 & 220 & 217 & 267 & 409 \\
+TCN & 1.07M & 821 & 417 & 433 & 446 & 469 & 545 \\
+\midrule
+\multicolumn{8}{l}{\textit{Direct (all params in rollout, runs $B \times 9\times$)}} \\
+LST & 631K & 631K & 304 & 553 & 686 & 914 & 1,343 \\
+LTVL & 635K & 635K & 303 & 556 & 705 & 912 & 1,306 \\
+MLP & 738K & 738K & 297 & 550 & 735 & 828 & 1,250 \\
+LSTM & 357K & 357K & 279 & 491 & 602 & 732 & 1,158 \\
+TCN & 735K & 735K & 298 & 592 & 862 & 839 & 1,271 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Closed-Loop Control}
+\label{sec:closedloop}

@@ -1,0 +1,288 @@
+\begin{thebibliography}{10}
+
+\bibitem{borrelli2012predictive}
+F.~Borrelli, A.~Bemporad, and M.~Morari, {\em Predictive control for linear and
+  hybrid systems}.
+\newblock Cambridge University Press, 2017.
+
+\bibitem{hewing2020learning}
+L.~Hewing, J.~Kabzan, and M.~N. Zeilinger, ``Learning-based model predictive
+  control: Toward safe learning in control,'' {\em Annual Review of Control,
+  Robotics, and Autonomous Systems}, vol.~3, pp.~269--296, 2020.
+
+\bibitem{rajamani2011vehicle}
+R.~Rajamani, {\em Vehicle dynamics and control}.
+\newblock Springer Science \& Business Media, 2011.
+
+\bibitem{kabzan2019learning}
+J.~Kabzan, L.~Hewing, A.~Liniger, and M.~N. Zeilinger, ``Learning-based model
+  predictive control for autonomous racing,'' {\em IEEE Robotics and Automation
+  Letters}, vol.~4, no.~4, pp.~3363--3370, 2019.
+
+\bibitem{punjani2015deep}
+A.~Punjani and P.~Abbeel, ``Deep learning helicopter dynamics models,'' in {\em
+  2015 IEEE International Conference on Robotics and Automation (ICRA)},
+  pp.~3223--3230, IEEE, 2015.
+
+\bibitem{liniger2015optimization}
+A.~Liniger, A.~Alexander, and J.~Lygeros, ``Optimization-based autonomous
+  racing of 1:43 scale rc cars,'' {\em Optimal Control Applications and
+  Methods}, vol.~36, no.~5, pp.~628--647, 2015.
+
+\bibitem{diehl2002real}
+M.~Diehl, H.~G. Bock, J.~P. Schl{\"o}der, R.~Findeisen, Z.~Nagy, and
+  F.~Allg{\"o}wer, ``Real-time optimization and nonlinear model predictive
+  control of processes governed by differential-algebraic equations,'' {\em
+  Journal of Process Control}, vol.~12, no.~4, pp.~577--585, 2002.
+
+\bibitem{amrit2011fast}
+P.~Falcone, F.~Borrelli, J.~Asgari, H.~E. Tseng, and D.~Hrovat, ``Predictive
+  active steering control for autonomous vehicle systems,'' {\em IEEE
+  Transactions on Control Systems Technology}, vol.~15, no.~3, pp.~566--580,
+  2007.
+
+\bibitem{kong2015kinematic}
+J.~Kong, M.~Pfeiffer, G.~Schildbach, and F.~Borrelli, ``Kinematic and dynamic
+  vehicle models for autonomous driving control design,'' in {\em 2015 IEEE
+  Intelligent Vehicles Symposium (IV)}, pp.~1094--1099, IEEE, 2015.
+
+\bibitem{verschueren2021acados}
+R.~Verschueren, G.~Frison, D.~Kouzoupis, J.~Frey, N.~v. Duijkeren, A.~Zanelli,
+  T.~Novi, T.~Albin, R.~Quirynen, and M.~Diehl, ``acados---a modular
+  open-source framework for fast embedded optimal control,'' {\em Mathematical
+  Programming Computation}, vol.~14, no.~1, pp.~147--183, 2022.
+
+\bibitem{subosits2019racetrack}
+J.~K. Subosits and J.~C. Gerdes, ``From the racetrack to the road: Real-time
+  trajectory planning for autonomous driving,'' {\em IEEE Transactions on
+  Intelligent Vehicles}, vol.~4, no.~2, pp.~309--320, 2019.
+
+\bibitem{mayne2005robust}
+D.~Q. Mayne, M.~M. Seron, and S.~V. Rakovi{\'c}, ``Robust model predictive
+  control of constrained linear systems with bounded disturbances,'' {\em
+  Automatica}, vol.~41, no.~2, pp.~219--224, 2005.
+
+\bibitem{villanueva2017robust}
+M.~E. Villanueva, R.~Quirynen, M.~Diehl, B.~Chachuat, and B.~Houska, ``Robust
+  mpc via min-max differential inequalities,'' {\em Automatica}, vol.~77,
+  pp.~311--321, 2017.
+
+\bibitem{goh2019toward}
+M.~Brown, J.~Funke, S.~Erlien, and J.~C. Gerdes, ``Safe driving envelopes for
+  path tracking in autonomous vehicles,'' {\em Control Engineering Practice},
+  vol.~61, pp.~307--316, 2017.
+
+\bibitem{williams2017information}
+G.~Williams, N.~Wagener, B.~Goldfain, P.~Drews, J.~M. Rehg, B.~Boots, and E.~A.
+  Theodorou, ``Information theoretic mpc for model-based reinforcement
+  learning,'' in {\em 2017 IEEE International Conference on Robotics and
+  Automation (ICRA)}, pp.~1714--1721, IEEE, 2017.
+
+\bibitem{wagener2019online}
+N.~Wagener, C.-A. Cheng, J.~Sacks, and B.~Boots, ``An online learning approach
+  to model predictive control,'' in {\em Robotics: Science and Systems (RSS)},
+  2019.
+
+\bibitem{williams2016aggressive}
+G.~Williams, P.~Aldrich, and E.~A. Theodorou, ``Aggressive driving with model
+  predictive path integral control,'' in {\em 2016 IEEE International
+  Conference on Robotics and Automation (ICRA)}, pp.~1433--1440, IEEE, 2016.
+
+\bibitem{drews2019vision}
+P.~Drews, G.~Williams, B.~Goldfain, E.~A. Theodorou, and J.~M. Rehg,
+  ``Vision-based high speed driving with a deep dynamic observer,'' {\em IEEE
+  Robotics and Automation Letters}, vol.~4, no.~2, pp.~1564--1571, 2019.
+
+\bibitem{pinneri2021sample}
+C.~Pinneri, S.~Sawant, O.~Makansi, J.~B{\"o}rgstr{\"o}m, and T.~Brox,
+  ``Sample-efficient cross-entropy method for real-time planning,'' in {\em
+  Conference on Robot Learning (CoRL)}, pp.~1049--1065, PMLR, 2021.
+
+\bibitem{bristow2006survey}
+D.~A. Bristow, M.~Tharayil, and A.~G. Alleyne, ``A survey of iterative learning
+  control,'' {\em IEEE Control Systems Magazine}, vol.~26, no.~3, pp.~96--114,
+  2006.
+
+\bibitem{rosolia2017learning}
+U.~Rosolia and F.~Borrelli, ``Learning model predictive control for iterative
+  tasks. a data-driven control framework,'' {\em IEEE Transactions on Automatic
+  Control}, vol.~63, no.~7, pp.~1883--1896, 2017.
+
+\bibitem{rosolia2019learning}
+U.~Rosolia and F.~Borrelli, ``Learning how to autonomously race a car: a
+  predictive control approach,'' {\em IEEE Transactions on Control Systems
+  Technology}, vol.~28, no.~6, pp.~2713--2719, 2019.
+
+\bibitem{yin2022safe}
+Z.~Zang, A.~Amine, N.-M.~T. Kokolakis, T.~X. Nghiem, U.~Rosolia, and
+  R.~Mangharam, ``Sit-lmpc: Safe information-theoretic learning model
+  predictive control for iterative tasks,'' {\em IEEE Robotics and Automation
+  Letters}, vol.~11, no.~1, pp.~986--993, 2026.
+
+\bibitem{pravitra2020information}
+P.~Pravitra {\em et~al.}, ``Information-theoretic learning model predictive
+  control,'' {\em Preprint}, 2020.
+
+\bibitem{pacejka2012tire}
+H.~Pacejka, {\em Tire and vehicle dynamics}.
+\newblock Elsevier, 2012.
+
+\bibitem{svendenius2005brush}
+J.~Svendenius and M.~Gafvert, ``The brush tire model with increased
+  flexibility,'' in {\em 2005 European Control Conference (ECC)},
+  pp.~1588--1593, IEEE, 2005.
+
+\bibitem{brunner2017sim}
+T.~Brunner {\em et~al.}, ``Sim-to-real transfer of low-level dynamics
+  parameters,'' in {\em Proceedings of the IEEE International Conference on
+  Robotics and Automation (ICRA)}, 2017.
+
+\bibitem{kaufmann2020deep}
+E.~Kaufmann, A.~Loquercio, R.~Ranftl, M.~M{\"u}ller, V.~Koltun, and
+  D.~Scaramuzza, ``Deep drone acrobatics,'' in {\em Robotics: Science and
+  Systems (RSS)}, 2020.
+
+\bibitem{hou2020data}
+Y.~Hou {\em et~al.}, ``Data-driven vehicle dynamics modeling for autonomous
+  driving,'' {\em IEEE Access}, 2020.
+
+\bibitem{lenz2015deep}
+I.~Lenz, R.~A. Knepper, and A.~Saxena, ``Deepmpc: Learning deep predictive
+  models for actuating arbitrary discrete state robotic systems,'' in {\em
+  Robotics: Science and Systems (RSS)}, 2015.
+
+\bibitem{d2020recurrent}
+M.~D'Angelo {\em et~al.}, ``Recurrent neural networks for kinodynamic
+  modeling,'' {\em IEEE Robotics and Automation Letters}, 2020.
+
+\bibitem{chen2018neural}
+R.~T. Chen, Y.~Rubanova, J.~Bettencourt, and D.~K. Duvenaud, ``Neural ordinary
+  differential equations,'' in {\em Advances in Neural Information Processing
+  Systems (NeurIPS)}, vol.~31, 2018.
+
+\bibitem{finzi2020simplifying}
+M.~Finzi, S.~Wang, and A.~G. Wilson, ``Simplifying, regularizing and scaling
+  continuous-time neural networks,'' in {\em Advances in Neural Information
+  Processing Systems (NeurIPS)}, vol.~33, pp.~6266--6277, 2020.
+
+\bibitem{asadi2019combating}
+K.~Asadi, D.~Misra, and M.~L. Littman, ``Combating the compounding-error
+  problem with a multi-step model,'' in {\em International Conference on
+  Machine Learning (ICML)}, pp.~337--346, PMLR, 2019.
+
+\bibitem{ajgl2020gray}
+J.~Ajgl {\em et~al.}, ``Gray-box modeling of complex vehicle dynamics,'' {\em
+  Control Engineering Practice}, 2020.
+
+\bibitem{ostafew2016robust}
+C.~J. Ostafew, A.~P. Schoellig, and T.~D. Barfoot, ``Robust constrained
+  learning-based nmpc enabling reliable mobile robot path tracking,'' {\em The
+  International Journal of Robotics Research}, vol.~35, no.~13, pp.~1547--1563,
+  2016.
+
+\bibitem{lee2020learning}
+J.~Lee, J.~Hwangbo, L.~Wellhausen, V.~Koltun, and M.~Hutter, ``Learning
+  quadrupedal locomotion over challenging terrain,'' {\em Science robotics},
+  vol.~5, no.~47, p.~eabc5986, 2020.
+
+\bibitem{corke2023robotics}
+P.~Corke, {\em Robotics, vision and control}.
+\newblock Springer, 2023.
+
+\bibitem{broggi2013terrain}
+A.~Broggi {\em et~al.}, ``Terrain mapping for off-road autonomous vehicles
+  using rational b-spline surfaces and stereo vision,'' in {\em IEEE
+  Intelligent Vehicles Symposium}, 2013.
+
+\bibitem{stano2022terrain}
+B.~Suger and C.~Stachniss, ``Visual-based terrain traversability estimation,''
+  in {\em IEEE International Conference on Robotics and Automation (ICRA)},
+  2015.
+
+\bibitem{bojarski2016end}
+M.~Bojarski, D.~Del~Testa, D.~Dworakowski, B.~Firner, B.~Flepp, P.~Goyal, L.~D.
+  Jackel, M.~Monfort, U.~Muller, and J.~Zhang, ``End to end learning for
+  self-driving cars,'' {\em arXiv preprint arXiv:1604.07316}, 2016.
+
+\bibitem{codevilla2018end}
+F.~Codevilla, M.~M{\"u}ller, A.~L{\'o}pez, V.~Koltun, and A.~Dosovitskiy,
+  ``End-to-end driving via conditional imitation learning,'' in {\em 2018 IEEE
+  International Conference on Robotics and Automation (ICRA)}, pp.~4693--4700,
+  IEEE, 2018.
+
+\bibitem{muller2018driving}
+M.~M{\"u}ller, A.~Dosovitskiy, B.~Ghanem, and V.~Koltun, ``Driving policy
+  transfer via modularity and abstraction,'' in {\em Conference on Robot
+  Learning (CoRL)}, pp.~1--15, PMLR, 2018.
+
+\bibitem{bommasani2021opportunities}
+R.~Bommasani, D.~A. Hudson, E.~Adeli, R.~Altman, S.~Arora, S.~von Arx, M.~S.
+  Bernardo, M.~S. Bernstein, R.~Bhagavatula, {\em et~al.}, ``On the
+  opportunities and risks of foundation models,'' {\em arXiv preprint
+  arXiv:2108.07258}, 2021.
+
+\bibitem{radford2021learning}
+A.~Radford, J.~W. Kim, C.~Hallacy, A.~Ramesh, G.~Goh, S.~Agarwal, G.~Sastry,
+  A.~Askell, P.~Mishkin, J.~Clark, {\em et~al.}, ``Learning transferable visual
+  models from natural language supervision,'' in {\em International Conference
+  on Machine Learning (ICML)}, pp.~8748--8763, PMLR, 2021.
+
+\bibitem{he2020momentum}
+K.~He, H.~Fan, Y.~Wu, S.~Xie, and R.~Girshick, ``Momentum contrast for
+  unsupervised visual representation learning,'' in {\em Proceedings of the
+  IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pp.~9729--9738, 2020.
+
+\bibitem{he2022masked}
+K.~He, X.~Chen, S.~Xie, Y.~Li, P.~Doll{\'a}r, and R.~Girshick, ``Masked
+  autoencoders are scalable vision learners,'' in {\em Proceedings of the
+  IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pp.~16000--16009, 2022.
+
+\bibitem{caron2021emerging}
+M.~Caron, H.~Touvron, I.~Misra, H.~J{\'e}gou, J.~Mairal, P.~Bojanowski, and
+  A.~Joulin, ``Emerging properties in self-supervised vision transformers,'' in
+  {\em Proceedings of the IEEE/CVF International Conference on Computer Vision
+  (ICCV)}, pp.~9650--9660, 2021.
+
+\bibitem{oquab2023dinov2}
+M.~Oquab, T.~Darcet, T.~Moutakanni, H.~Vo, M.~Soyer, V.~Kinnunen, {\em et~al.},
+  ``Dinov2: Learning robust visual features without supervision,'' {\em arXiv
+  preprint arXiv:2304.07193}, 2023.
+
+\bibitem{amir2021deep}
+S.~Amir, Y.~Gandelsman, S.~Bagon, and T.~Dekel, ``Deep vit features as dense
+  visual descriptors,'' {\em arXiv preprint arXiv:2112.05814}, 2021.
+
+\bibitem{frey2023locomotion}
+J.~Frey {\em et~al.}, ``Locomotion-in-the-wild: Learning robust locomotion via
+  visual foundation models,'' in {\em Robotics: Science and Systems (RSS)},
+  2023.
+
+\bibitem{kahn2021badgr}
+G.~Kahn, P.~Abbeel, and S.~Levine, ``Badgr: An autonomous self-supervised
+  learning-based navigation system,'' {\em IEEE Robotics and Automation
+  Letters}, vol.~6, no.~2, pp.~1312--1319, 2021.
+
+\bibitem{seo2023scenepic}
+D.~Shah, B.~Osi{\'n}ski, B.~Ichter, and S.~Levine, ``Lm-nav: Robotic navigation
+  with large pre-trained models of language, vision, and action,'' in {\em
+  Conference on Robot Learning (CoRL)}, 2023.
+
+\bibitem{srinivasan2020end}
+K.~Srinivasan {\em et~al.}, ``End-to-end learning of a robust predictive
+  controller,'' {\em arXiv preprint}, 2020.
+
+\bibitem{nitsche2022fast}
+M.~Nitsche {\em et~al.}, ``Fast and robust visual terrain classification,''
+  {\em IEEE Robotics and Automation Letters}, 2022.
+
+\bibitem{maturko2022vision}
+E.~Kaufmann {\em et~al.}, ``Vision-based predictive control for autonomous
+  navigation,'' {\em Science Robotics}, 2022.
+
+\bibitem{xiao2022learning}
+W.~Xiao {\em et~al.}, ``Learning visual predictive models for high-speed
+  navigation,'' {\em IEEE Transactions on Robotics}, 2022.
+
+\end{thebibliography}

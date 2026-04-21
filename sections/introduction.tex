@@ -1,0 +1,32 @@
+\chapter{Introduction}
+\label{sec:introduction}
+
+Model-based control strategies, particularly Model Predictive Control (MPC), have achieved widespread adoption in robotics by explicitly reasoning about future system behavior and constraints \cite{borrelli2012predictive}. Their performance, however, hinges critically on the fidelity of the underlying predictive model. With the growing availability of robot trajectory data and advances in machine learning, the choice of model architecture for learning dynamics from data has become a key design decision for high-performance model-based control \cite{hewing2020learning}.
+
+This decision involves inherent trade-offs. Efficient parametric models, such as linear systems or fixed-parameter kinematic models, offer computational tractability and interpretability but may fail to capture complex nonlinear dynamics, especially when systems operate near performance limits \cite{rajamani2011vehicle}. More expressive architectures can better approximate true system behavior but risk overfitting, increased computational overhead, and reduced interpretability. Physics-informed approaches that leverage known structure can improve sample efficiency and generalization \cite{kabzan2019learning}, while purely data-driven methods offer maximum modeling flexibility at the cost of requiring more data and providing fewer interpretable failure modes \cite{punjani2015deep}.
+
+Beyond model architecture, the operating context also influences dynamics. Road surface conditions, tire wear, and payload variations all alter vehicle behavior, yet conventional system identification produces a single fixed parameter set. A model that adapts its parameters to the current context, identified for example from onboard visual data, can maintain robust prediction accuracy across diverse conditions without manual re-calibration. Incorporating visual information into dynamics prediction, however, introduces a computational challenge. Sampling-based controllers such as MPPI evaluate the dynamics model thousands of times per control cycle, across $B$ candidate trajectories and $N$ horizon steps. Conditioning each evaluation on a high-dimensional visual embedding is prohibitively expensive. An effective architecture must therefore amortize visual processing by extracting context-dependent parameters once and reusing them across all rollout evaluations.
+
+This paper addresses these challenges through a systematic empirical comparison in the autonomous racing domain, in which aggressive maneuvering at the limits of handling exposes the inadequacy of overly simplified models. Using a 1/5th-scale RC car platform, PIVOT trains and evaluates seven dynamics models spanning three categories on \emph{the same trajectory dataset}:
+\begin{itemize}
+    \item \textbf{Fixed-parameter physics models}: a nonlinear single-track (bicycle) model and a time-varying linear model, both with parameters identified offline.
+    \item \textbf{Physics-informed learned models}: learned variants of the single-track and time-varying linear models, in which neural networks adapt the physics model parameters or system matrices as functions of the current state and action.
+    \item \textbf{Purely data-driven models}: a multi-layer perceptron (MLP), a long short-term memory network (LSTM), and a temporal convolutional network (TCN), each predicting state derivatives directly from state-action data without explicit physics structure.
+\end{itemize}
+
+All seven models are trained on identical data, enabling a controlled comparison of \emph{model architecture choice} rather than data availability. The evaluation comprises two stages. First, each model is assessed on offline trajectory prediction accuracy, measuring how well the learned dynamics generalize to held-out trajectories across different operating conditions. Second, each model is integrated into a sampling-based MPC controller and evaluated in closed-loop autonomous racing, in which an iterative learning framework progressively improves lap times while maintaining safety constraints. This two-stage evaluation decouples open-loop prediction quality from closed-loop control performance, characterizing each model's strengths and limitations.
+
+This investigation targets four objectives:
+\begin{enumerate}
+    \item[\textbf{O1.}] Identifying the level of model complexity necessary to capture vehicle dynamics for high-performance control at the limits of handling.
+    \item[\textbf{O2.}] Evaluating whether physics-informed learned models can bridge the gap between fixed parametric models and purely data-driven representations.
+    \item[\textbf{O3.}] Quantifying the advantages of physics-informed architectures in sample efficiency and generalization compared to purely data-driven approaches.
+    \item[\textbf{O4.}] Characterizing the trade-off between model expressiveness and real-time control feasibility.
+\end{enumerate}
+
+The contributions of this paper are three-fold:
+\begin{enumerate}
+    \item Proposed a systematic comparison framework for seven dynamics models across three categories (fixed-parameter physics, physics-informed learned, and purely data-driven), all trained on the same dataset, isolating the effect of model structure on prediction and control performance.
+    \item Developed and evaluated the integration of learned dynamics models within sampling-based MPC, specifically Model Predictive Path Integral (MPPI) control, and iterative learning control, specifically Safe Information-Theoretic Learning MPC (SIT-LMPC), on a physical 1/5th-scale racing platform, providing empirical grounding beyond simulation.
+    \item Conducted a two-stage evaluation (offline trajectory prediction followed by closed-loop racing), yielding actionable insights into the trade-offs among model complexity, physics constraints, prediction accuracy, and real-time control performance.
+\end{enumerate}
