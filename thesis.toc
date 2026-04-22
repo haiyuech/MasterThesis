@@ -14,33 +14,47 @@
 \contentsline {section}{\numberline {3.4}Learning Objective}{9}{section.17}%
 \contentsline {section}{\numberline {3.5}Model Structure}{10}{section.19}%
 \contentsline {chapter}{\numberline {4}Model Architectures}{11}{chapter.20}%
-\contentsline {section}{\numberline {4.1}Fixed-Parameter Physics Models}{12}{section.21}%
-\contentsline {subsection}{\numberline {4.1.1}Default Single-Track Model (DST)}{12}{subsection.22}%
-\contentsline {subsection}{\numberline {4.1.2}Default Time-Varying Linear Model (DTVL)}{13}{subsection.25}%
-\contentsline {section}{\numberline {4.2}Physics-Informed Learned Models (PIVOT)}{13}{section.27}%
-\contentsline {subsection}{\numberline {4.2.1}Learned Single-Track Model (LST)}{13}{subsection.28}%
-\contentsline {subsection}{\numberline {4.2.2}Learned Time-Varying Linear Model (LTVL)}{14}{subsection.32}%
-\contentsline {section}{\numberline {4.3}Purely Data-Driven Models}{15}{section.36}%
-\contentsline {subsection}{\numberline {4.3.1}Multi-Layer Perceptron (MLP)}{15}{subsection.37}%
-\contentsline {subsection}{\numberline {4.3.2}Long Short-Term Memory Network (LSTM)}{15}{subsection.39}%
-\contentsline {subsection}{\numberline {4.3.3}Temporal Convolutional Network (TCN)}{16}{subsection.42}%
-\contentsline {chapter}{\numberline {5}Control and Evaluation Framework}{18}{chapter.46}%
-\contentsline {section}{\numberline {5.1}Sampling-Based MPC (MPPI)}{18}{section.47}%
-\contentsline {section}{\numberline {5.2}Safe Information-Theoretic Learning MPC (SIT-LMPC)}{19}{section.50}%
-\contentsline {paragraph}{Integration with Learned Models.}{20}{paragraph*.58}%
-\contentsline {section}{\numberline {5.3}Evaluation Objective}{21}{section.59}%
-\contentsline {chapter}{\numberline {6}Experiments}{22}{chapter.61}%
-\contentsline {section}{\numberline {6.1}Hardware Setup and Data Collection}{22}{section.62}%
-\contentsline {subsection}{\numberline {6.1.1}Platform}{22}{subsection.63}%
-\contentsline {subsection}{\numberline {6.1.2}Data Collection}{23}{subsection.65}%
-\contentsline {section}{\numberline {6.2}Offline Trajectory Prediction}{24}{section.66}%
-\contentsline {subsection}{\numberline {6.2.1}Evaluation Protocol and Metrics}{24}{subsection.67}%
-\contentsline {subsection}{\numberline {6.2.2}Results}{25}{subsection.68}%
-\contentsline {paragraph}{Physics-informed models outperform purely data-driven approaches on real-world data.}{25}{paragraph*.69}%
-\contentsline {paragraph}{Nonlinear physics structure provides a stronger inductive bias than linear structure.}{26}{paragraph*.70}%
-\contentsline {paragraph}{Physics structure mitigates dependence on visual features.}{27}{paragraph*.71}%
-\contentsline {section}{\numberline {6.3}Computational Cost}{27}{section.73}%
-\contentsline {section}{\numberline {6.4}Closed-Loop Control}{29}{section.75}%
-\contentsline {chapter}{\numberline {7}Conclusion}{30}{chapter.76}%
-\contentsline {chapter}{BIBLIOGRAPHY}{31}{section*.77}%
+\contentsline {section}{\numberline {4.1}Overview}{11}{section.21}%
+\contentsline {section}{\numberline {4.2}Visual Context Representation}{12}{section.24}%
+\contentsline {paragraph}{Semantic visual features.}{12}{paragraph*.25}%
+\contentsline {paragraph}{Low-level visual features.}{13}{paragraph*.27}%
+\contentsline {paragraph}{State context.}{13}{paragraph*.28}%
+\contentsline {section}{\numberline {4.3}Parameter Generator}{14}{section.30}%
+\contentsline {paragraph}{Architecture.}{14}{paragraph*.31}%
+\contentsline {paragraph}{Multi-head output.}{14}{paragraph*.32}%
+\contentsline {paragraph}{Output scaling.}{15}{paragraph*.34}%
+\contentsline {section}{\numberline {4.4}Dynamics Models}{15}{section.36}%
+\contentsline {subsection}{\numberline {4.4.1}Fixed-Parameter Physics Models}{15}{subsection.37}%
+\contentsline {subsubsection}{Default Single-Track Model (DST)}{15}{subsubsection*.38}%
+\contentsline {subsubsection}{Default Time-Varying Linear Model (DTVL)}{16}{subsubsection*.41}%
+\contentsline {subsection}{\numberline {4.4.2}Physics-Informed Learned Models (PIVOT)}{16}{subsection.43}%
+\contentsline {subsubsection}{Learned Single-Track Model (LST)}{17}{subsubsection*.44}%
+\contentsline {subsubsection}{Learned Time-Varying Linear Model (LTVL)}{18}{subsubsection*.47}%
+\contentsline {subsection}{\numberline {4.4.3}Purely Data-Driven Models}{18}{subsection.50}%
+\contentsline {subsubsection}{Multi-Layer Perceptron (MLP)}{19}{subsubsection*.51}%
+\contentsline {subsubsection}{Long Short-Term Memory Network (LSTM)}{19}{subsubsection*.53}%
+\contentsline {subsubsection}{Temporal Convolutional Network (TCN)}{20}{subsubsection*.55}%
+\contentsline {section}{\numberline {4.5}Efficient Rollout Design}{20}{section.57}%
+\contentsline {paragraph}{Vectorized rollout.}{21}{paragraph*.58}%
+\contentsline {paragraph}{Numerical integration.}{21}{paragraph*.59}%
+\contentsline {paragraph}{Computational cost.}{21}{paragraph*.60}%
+\contentsline {chapter}{\numberline {5}Control and Evaluation Framework}{23}{chapter.63}%
+\contentsline {section}{\numberline {5.1}Sampling-Based MPC (MPPI)}{23}{section.64}%
+\contentsline {section}{\numberline {5.2}Safe Information-Theoretic Learning MPC (SIT-LMPC)}{24}{section.67}%
+\contentsline {paragraph}{Integration with Learned Models.}{25}{paragraph*.75}%
+\contentsline {section}{\numberline {5.3}Evaluation Objective}{26}{section.76}%
+\contentsline {chapter}{\numberline {6}Experiments}{27}{chapter.78}%
+\contentsline {section}{\numberline {6.1}Hardware Setup and Data Collection}{27}{section.79}%
+\contentsline {subsection}{\numberline {6.1.1}Platform}{27}{subsection.80}%
+\contentsline {subsection}{\numberline {6.1.2}Data Collection}{28}{subsection.82}%
+\contentsline {section}{\numberline {6.2}Offline Trajectory Prediction}{29}{section.83}%
+\contentsline {subsection}{\numberline {6.2.1}Evaluation Protocol and Metrics}{29}{subsection.84}%
+\contentsline {subsection}{\numberline {6.2.2}Results}{30}{subsection.85}%
+\contentsline {paragraph}{Physics-informed models outperform purely data-driven approaches on real-world data.}{30}{paragraph*.86}%
+\contentsline {paragraph}{Nonlinear physics structure provides a stronger inductive bias than linear structure.}{31}{paragraph*.87}%
+\contentsline {paragraph}{Physics structure mitigates dependence on visual features.}{32}{paragraph*.88}%
+\contentsline {section}{\numberline {6.3}Computational Cost}{32}{section.90}%
+\contentsline {section}{\numberline {6.4}Closed-Loop Control}{34}{section.92}%
+\contentsline {chapter}{\numberline {7}Conclusion}{35}{chapter.93}%
+\contentsline {chapter}{BIBLIOGRAPHY}{36}{section*.94}%
 \setcounter {tocdepth}{0}

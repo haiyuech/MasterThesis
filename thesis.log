@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.23)  21 APR 2026 21:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.23)  21 APR 2026 22:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -771,12 +771,6 @@ ve Con-trol (MPC) of au-tonomous
 \openout4 = `thesis.toc'.
 
  [6] (./thesis.lot
-Overfull \hbox (6.46544pt too wide) in paragraph at lines 6--6
- \T1/ptm/m/n/12 as base-lines. Physics-informed mod-els lever-age known dy-nam-
-ics equa- 
- []
-
-
 Overfull \hbox (6.6575pt too wide) in paragraph at lines 12--12
  \T1/ptm/m/n/12 738K pa-ram-e-ters per step. All val-ues av-er-aged over 5,000 
 JIT-compiled 
@@ -820,8 +814,50 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 Chapter 4.
 [11
 
-] [12] [13] [14]
-Overfull \hbox (36.6068pt too wide) in paragraph at lines 107--108
+]
+
+Package natbib Warning: Citation `oquab2024dinov2' on page 12 undefined on inpu
+t line 30.
+
+<img/dino_feature/image_1776202324420642048.jpg, id=305, 857.2025pt x 481.8pt>
+File: img/dino_feature/image_1776202324420642048.jpg Graphic file (type jpg)
+<use img/dino_feature/image_1776202324420642048.jpg>
+Package pdftex.def Info: img/dino_feature/image_1776202324420642048.jpg  used o
+n input line 34.
+(pdftex.def)             Requested size: 161.98073pt x 91.04872pt.
+<img/dino_feature/image_1776202324420642048_feature.png, id=306, 224.84pt x 224
+.84pt>
+File: img/dino_feature/image_1776202324420642048_feature.png Graphic file (type
+ png)
+<use img/dino_feature/image_1776202324420642048_feature.png>
+Package pdftex.def Info: img/dino_feature/image_1776202324420642048_feature.png
+  used on input line 35.
+(pdftex.def)             Requested size: 91.04941pt x 91.04872pt.
+<img/dino_feature/image_1776206037414451712.jpg, id=307, 857.2025pt x 481.8pt>
+File: img/dino_feature/image_1776206037414451712.jpg Graphic file (type jpg)
+<use img/dino_feature/image_1776206037414451712.jpg>
+Package pdftex.def Info: img/dino_feature/image_1776206037414451712.jpg  used o
+n input line 37.
+(pdftex.def)             Requested size: 161.98073pt x 91.04872pt.
+<img/dino_feature/image_1776206037414451712_feature.png, id=308, 224.84pt x 224
+.84pt>
+File: img/dino_feature/image_1776206037414451712_feature.png Graphic file (type
+ png)
+<use img/dino_feature/image_1776206037414451712_feature.png>
+Package pdftex.def Info: img/dino_feature/image_1776206037414451712_feature.png
+  used on input line 38.
+(pdftex.def)             Requested size: 91.04941pt x 91.04872pt.
+[12] [13 <./img/dino_feature/image_1776202324420642048.jpg> <./img/dino_feature
+/image_1776202324420642048_feature.png (PNG copy)> <./img/dino_feature/image_17
+76206037414451712.jpg> <./img/dino_feature/image_1776206037414451712_feature.pn
+g (PNG copy)>] [14] [15] [16]
+Overfull \hbox (4.72331pt too wide) in paragraph at lines 140--141
+[]\T1/ptm/m/n/12 The LST model thus per-forms two com-ple-men-tary func-tions: 
+(1) in-fer-ring terrain-dependent
+ []
+
+[17] [18]
+Overfull \hbox (36.6068pt too wide) in paragraph at lines 176--177
 \T1/ptm/m/n/12 the dis-con-ti-nu-ity at $\OMS/ztmcm/m/n/12 ^^F\OML/ztmcm/m/it/1
 2 ^^Y$\T1/ptm/m/n/12 , yield-ing the in-put vec-tor $\OT1/ztmcm/m/n/12 [[]\OML/
 ztmcm/m/it/12 ; a[]\OT1/ztmcm/m/n/12 ][] \OMS/ztmcm/m/n/12 2 \U/msb/m/n/12 R[]$
@@ -829,47 +865,62 @@ ztmcm/m/it/12 ; a[]\OT1/ztmcm/m/n/12 ][] \OMS/ztmcm/m/n/12 2 \U/msb/m/n/12 R[]$
 v;  []  ;  []  \OT1/ztmcm/m/n/12 ][]$\T1/ptm/m/n/12 .
  []
 
-[15] [16]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 134.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 134.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 134.
-) (./sections/control.tex [17]
-Chapter 5.
-[18
+[19] [20]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+03.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+Overfull \hbox (1.9263pt too wide) in paragraph at lines 206--207
+[] \T1/ptm/b/n/12 Nu-mer-i-cal in-te-gra-tion. \T1/ptm/m/n/12 Continuous-time s
+tate deriva-tives are dis-cretized via fourth-order
+ []
 
-] [19] [20]) (./sections/experiments.tex [21]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 217.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 217.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 217.
+) (./sections/control.tex [21{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvip
+s/cm-super/cm-super-t1.enc}] [22]
+Chapter 5.
+[23
+
+] [24] [25]) (./sections/experiments.tex [26]
 Chapter 6.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[22
+[27
 
-] [23] [24] [25] [26] [27] [28]) (./sections/conclusion.tex [29]
+] [28] [29] [30] [31] [32] [33]) (./sections/conclusion.tex [34]
 Chapter 7.
-) [30
+) [35
 
-] (./thesis.bbl [31
+] (./thesis.bbl [36
 
 
-] [32] [33]) [34] (./thesis.aux)
+] [37] [38])
+
+Package natbib Warning: There were undefined citations.
+
+[39] (./thesis.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: A74C5FA5F35B4D9BECE9B753FCE0817B;1328.
+(rerunfilecheck)             Checksum: EFA80ED7053820FB081E32BFAF3B2A0F;1328.
  ) 
 Here is how much of TeX's memory you used:
- 15859 strings out of 474116
- 252846 string characters out of 5743682
+ 15947 strings out of 474116
+ 255721 string characters out of 5743682
  1946187 words of memory out of 5000000
- 37752 multiletter control sequences out of 15000+600000
- 614435 words of font info for 140 fonts, out of 8000000 for 9000
+ 37813 multiletter control sequences out of 15000+600000
+ 614748 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,93p,2030b,893s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,93p,2030b,947s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
@@ -877,15 +928,16 @@ usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
 sr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb><
 /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.p
 fb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></us
-r/local/texlive/2024/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/tex
-live/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/
-texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist
-/fonts/type1/urw/times/utmri8a.pfb>
-Output written on thesis.pdf (41 pages, 196699 bytes).
+10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1200
+.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/
+local/texlive/2024/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texli
+ve/2024/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2024/te
+xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2024/texmf-dist/f
+onts/type1/urw/times/utmri8a.pfb>
+Output written on thesis.pdf (46 pages, 613778 bytes).
 PDF statistics:
- 544 PDF objects out of 1000 (max. 8388607)
- 472 compressed objects within 5 object streams
- 153 named destinations out of 1000 (max. 500000)
- 89 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 604 PDF objects out of 1000 (max. 8388607)
+ 520 compressed objects within 6 object streams
+ 175 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

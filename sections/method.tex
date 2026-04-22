@@ -24,20 +24,28 @@ Two fixed-parameter baselines (DST, DTVL) bypass the parameter network entirely:
 \section{Visual Context Representation}
 \label{sec:visual-context}
 
-The context feature vector $\xi^{(i)}$ encodes both visual and proprioceptive information about the current operating condition. It comprises three components.
+The context feature vector $\xi^{(i)}$ encodes both visual and proprioceptive information about the current operating condition. It comprises two components.
 
 \paragraph{Semantic visual features.}
-A frozen DINOv2 ViT-S/14 backbone~\cite{oquab2024dinov2} extracts a 384-dimensional CLS token from each onboard camera image ($854 \times 480$ pixels, 30\,Hz). The image is resized to 256 pixels on the shorter side, center-cropped to $224 \times 224$, and normalized with ImageNet statistics before being passed through the network. The resulting feature vector is L2-normalized to unit norm. DINOv2 is selected for its ability to produce semantically rich representations without task-specific fine-tuning: the frozen backbone captures terrain texture, surface type, and scene geometry in a compact embedding that generalizes across visual conditions.
+A frozen DINOv2 ViT-S/14 backbone~\cite{oquab2024dinov2} extracts a 384-dimensional CLS token from each onboard camera image ($854 \times 480$ pixels, 30\,Hz). The image is resized to 256 pixels on the shorter side, center-cropped to $224 \times 224$, and normalized with ImageNet statistics before being passed through the network. The resulting feature vector is L2-normalized to unit norm. DINOv2 is selected for its ability to produce semantically rich representations without task-specific fine-tuning: the frozen backbone captures terrain texture, surface type, and scene geometry in a compact embedding that generalizes across visual conditions. Figure~\ref{fig:dino-features} visualizes the patch-level DINOv2 features for two scenes from the test track, illustrating how the representation distinguishes terrain regions (grass, pavement, buildings) without any task-specific supervision.
 
-\paragraph{Low-level visual features.}
-The per-pixel mean RGB value of the raw image provides a 3-dimensional summary of overall illumination and surface color. This low-level signal complements the high-level DINOv2 representation by capturing global appearance shifts (e.g., shadow versus sunlight, wet versus dry surfaces) that may not be salient in learned semantic features.
+\begin{figure}[t]
+  \centering
+  \includegraphics[height=2.6cm]{img/dino_feature/image_1776202324420642048.jpg}\kern1pt
+  \includegraphics[height=2.6cm]{img/dino_feature/image_1776202324420642048_feature.png}\hspace{0.8em}
+  \includegraphics[height=2.6cm]{img/dino_feature/image_1776206037414451712.jpg}\kern1pt
+  \includegraphics[height=2.6cm]{img/dino_feature/image_1776206037414451712_feature.png}
+
+  \caption{Onboard camera images (left of each pair) and corresponding DINOv2 patch-level feature visualizations (right of each pair) from two locations on the test track. Colors in the feature maps encode the NCUT spectral eigenvectors of the patch token embeddings, projected to RGB via UMAP. Semantically distinct regions (grass, pavement, buildings, sky) produce distinct feature clusters without task-specific fine-tuning}
+  \label{fig:dino-features}
+\end{figure}
 
 \paragraph{State context.}
 An 8-dimensional proprioceptive vector captures the vehicle's instantaneous kinematic state: body-frame velocities $(v_x, v_y, v_z)$, yaw rate $\dot{\psi}$, pitch $\theta$ and pitch rate $\dot{\theta}$, and roll $\varphi$ and roll rate $\dot{\varphi}$. These quantities are measured by the onboard IMU and GNSS system at 100\,Hz. State context provides the parameter network with information about the current dynamic regime (e.g., high-slip cornering versus straight-line driving) that is not directly visible in the camera image.
 
-The three components are concatenated to form the context feature vector:
+The two components are concatenated to form the context feature vector:
 \begin{equation}
-  \xi^{(i)} = \bigl[\,\underbrace{z_{\text{DINOv2}}}_{\text{384-dim}},\;\; \underbrace{\bar{I}_{\text{RGB}}}_{\text{3-dim}},\;\; \underbrace{s_{\text{ctx}}}_{\text{8-dim}}\,\bigr] \in \mathbb{R}^{d_\xi}.
+  \xi^{(i)} = \bigl[\,\underbrace{z_{\text{DINOv2}}}_{\text{384-dim}},\;\; \underbrace{s_{\text{ctx}}}_{\text{8-dim}}\,\bigr] \in \mathbb{R}^{392}.
   \label{eq:context-features}
 \end{equation}
 The DINOv2 backbone is frozen during training; only the parameter network $\psi$ is updated.
