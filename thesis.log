@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.4.23)  21 APR 2026 16:21
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.4.23)  21 APR 2026 20:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -666,7 +666,7 @@ Overfull \hbox (6.48192pt too wide) in paragraph at lines 6--6
  []
 
 
-Overfull \hbox (6.67398pt too wide) in paragraph at lines 11--11
+Overfull \hbox (6.67398pt too wide) in paragraph at lines 12--12
  \T1/ptm/m/n/12 738K pa-ram-e-ters per step. All val-ues av-er-aged over 5,000 JIT-compiled 
  []
 
@@ -717,74 +717,131 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [2]) (./sections/related_work.tex [3]
 Chapter 2.
 
-Overfull \hbox (10.12434pt too wide) in paragraph at lines 4--5
-\T1/ptm/m/n/12 pre-dic-tive con-trol for au-tonomous rac-ing (Sec-tion []2.1[]), kin-o-dy-nam-ics mod-el-ing (Sec-tion []2.2[]),
+Package natbib Warning: Citation `MAYNE2000789' on page 4 undefined on input line 9.
+
+
+Package natbib Warning: Citation `williams2017model' on page 4 undefined on input line 9.
+
+
+Package natbib Warning: Citation `williams2018information' on page 4 undefined on input line 9.
+
+
+Package natbib Warning: Citation `williams2018robust' on page 4 undefined on input line 9.
+
+
+Package natbib Warning: Citation `zang2025sit' on page 4 undefined on input line 11.
+
+
+Package natbib Warning: Citation `ames2019control' on page 4 undefined on input line 11.
+
+
+Package natbib Warning: Citation `hafner2019learning' on page 4 undefined on input line 11.
+
+
+Overfull \hbox (1.32793pt too wide) in paragraph at lines 11--12
+\T1/ptm/m/n/12 func-tions, en-sur-ing closed-loop sta-bil-ity and it-er-a-tive per-for-mance im-prove-ment [[]]. More
  []
+
+
+Package natbib Warning: Citation `zhai2026pa' on page 4 undefined on input line 13.
+
+
+Package natbib Warning: Citation `hafner2019learning' on page 4 undefined on input line 13.
 
 [4
 
-] [5] [6] [7]
-Overfull \hbox (18.8597pt too wide) in paragraph at lines 39--40
-[]\T1/ptm/m/n/12 Among avail-able VFMs, CLIP [[]] and DI-NOv2 [[]] rep-re-sent two com-ple-men-tary paradigms.
- []
+]
 
-) [8] (./sections/problem.tex [9]
+Package natbib Warning: Citation `rajamani2006vehicle' on page 5 undefined on input line 20.
+
+
+Package natbib Warning: Citation `pacejka2005tire' on page 5 undefined on input line 20.
+
+
+Package natbib Warning: Citation `de1995new' on page 5 undefined on input line 20.
+
+
+Package natbib Warning: Citation `spielberg2019neural' on page 5 undefined on input line 22.
+
+
+Package natbib Warning: Citation `zhai2025neural' on page 5 undefined on input line 22.
+
+
+Package natbib Warning: Citation `peng2025transformer' on page 5 undefined on input line 22.
+
+
+Package natbib Warning: Citation `xiao2021learning' on page 5 undefined on input line 22.
+
+
+Package natbib Warning: Citation `datar2024learning' on page 5 undefined on input line 22.
+
+[5]
+
+Package natbib Warning: Citation `kang2024clip' on page 6 undefined on input line 29.
+
+
+Package natbib Warning: Citation `zhou2024dino' on page 6 undefined on input line 29.
+
+) (./sections/problem.tex [6] [7]
 Chapter 3.
 LaTeX Font Info:    Trying to load font information for U+eus on input line 4.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
-) [10
+) [8
 
-] [11]) (./sections/method.tex [12]
+] [9]) (./sections/method.tex [10]
 Chapter 4.
-[13
+[11
 
-] [14] [15] [16]
+] [12] [13] [14]
 Overfull \hbox (36.6068pt too wide) in paragraph at lines 107--108
 \T1/ptm/m/n/12 the dis-con-ti-nu-ity at $\OMS/ztmcm/m/n/12 ^^F\OML/ztmcm/m/it/12 ^^Y$\T1/ptm/m/n/12 , yield-ing the in-put vec-tor $\OT1/ztmcm/m/n/12 [[]\OML/ztmcm/m/it/12 ; a[]\OT1/ztmcm/m/n/12 ][] \OMS/ztmcm/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/ptm/m/n/12 with $[] \OT1/ztmcm/m/n/12 = [\OML/ztmcm/m/it/12 x;  y;  ^^N;  v;  []  ;  []  \OT1/ztmcm/m/n/12 ][]$\T1/ptm/m/n/12 .
  []
 
-[17] [18]
+[15] [16]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 134.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 134.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 134.
-) (./sections/control.tex [19]
+) (./sections/control.tex [17]
 Chapter 5.
-[20
+[18
 
-] [21]) (./sections/experiments.tex [22]
+] [19]) (./sections/experiments.tex [20]
 Chapter 6.
-[23
 
-] [24] [25] [26] [27] [28]) (./sections/conclusion.tex [29] [30]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[21
+
+] [22] [23] [24] [25] [26] [27]) (./sections/conclusion.tex [28]
 Chapter 7.
-) [31
+) [29
 
-] (./thesis.bbl [32
+] (./thesis.bbl [30
 
 
-] [33] [34] [35] [36])
+] [31] [32] [33] [34])
 
 Package natbib Warning: There were undefined citations.
 
-[37] (./thesis.aux)
+[35] (./thesis.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 2FC1D8593A8F628B74E9063965B5611F;1328.
+(rerunfilecheck)             Checksum: A2FAAABF5FDE50827433490925B4C747;1328.
  ) 
 Here is how much of TeX's memory you used:
- 15541 strings out of 474773
- 250931 string characters out of 5757724
+ 15543 strings out of 474773
+ 250957 string characters out of 5757724
  1932839 words of memory out of 5000000
- 37427 multiletter control sequences out of 15000+600000
+ 37429 multiletter control sequences out of 15000+600000
  596694 words of font info for 103 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 84i,12n,93p,2030b,809s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,93p,2030b,809s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on thesis.pdf (44 pages).
+Output written on thesis.pdf (42 pages).

@@ -7,7 +7,35 @@ This chapter evaluates the seven dynamics models described in Chapter~\ref{sec:m
 \label{sec:hardware}
 
 \subsection{Platform}
-All experiments are conducted on a 1/5th-scale autonomous off-road race car. The vehicle is equipped with a Fixposition Vision-RTK 2 GNSS system for robust localization in an outdoor grassy environment. A GoPro camera mounted on the vehicle captures onboard RGB images at $854 \times 480$ resolution and approximately 30\,Hz for visual feature extraction. The vehicle operates on a closed-loop track in an off-road grassy environment, in which natural terrain variations introduce surface variability that affects tire-road interaction and vehicle dynamics.
+\label{sec:platform}
+All experiments are conducted on a 1/5th-scale autonomous off-road race car equipped with three primary subsystems:
+\begin{itemize}
+    \item An NVIDIA Jetson Orin AGX for onboard computing.
+    \item A Fixposition Vision-RTK 2 GNSS system for state estimation and localization.
+    \item Motor and steering servo interfaces for actuation.
+\end{itemize}
+A GoPro camera mounted on the vehicle captures onboard RGB images at $854 \times 480$ resolution and approximately 30\,Hz for visual feature extraction. State estimation is performed using an Extended Kalman Filter that fuses IMU measurements and encoder data. The vehicle operates on a closed-loop track in an outdoor grassy environment, in which natural terrain variations introduce surface variability that affects tire--road interaction and vehicle dynamics. The nominal platform parameters are listed in Table~\ref{tab:params}.
+
+\begin{table}[h]
+\centering
+\caption{Nominal Parameters of the 1/5th-Scale RC Car Platform}
+\label{tab:params}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Nominal Value} \\
+\midrule
+Vehicle length & $l$ & 0.531\,m \\
+Total vehicle mass & $m$ & 15.32\,kg \\
+Moment of inertia (z-axis) & $I_z$ & 0.643\,kg$\cdot$m$^2$ \\
+Distance to front axle & $l_f$ & 0.2725\,m \\
+Distance to rear axle & $l_r$ & 0.2585\,m \\
+Center-of-gravity height & $h_{\text{cg}}$ & 0.1825\,m \\
+Front cornering stiffness & $C_{S,f}$ & 5.3507\,N/rad \\
+Rear cornering stiffness & $C_{S,r}$ & 5.3507\,N/rad \\
+Friction coefficient & $\mu$ & 0.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Data Collection}
 \label{sec:datacollection}
