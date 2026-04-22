@@ -1,7 +1,7 @@
 \chapter{Control and Evaluation Framework}
 \label{sec:control}
 
-All seven dynamics models are integrated into a unified control framework for evaluation. This chapter describes the sampling-based MPC controller employed for trajectory optimization (Section~\ref{sec:mppi}) and the iterative learning framework adopted for closed-loop evaluation (Section~\ref{sec:sitlmpc}).
+All seven dynamics models are integrated into a unified control framework for evaluation. This chapter describes the sampling-based MPC controller employed for trajectory optimization (Section~\ref{sec:mppi}), the iterative learning framework adopted for closed-loop evaluation (Section~\ref{sec:sitlmpc}), and the evaluation objective that links model quality to control performance (Section~\ref{sec:eval-objective}).
 
 \section{Sampling-Based MPC (MPPI)}
 \label{sec:mppi}
@@ -12,7 +12,7 @@ At each time step $t$, MPPI samples $K$ candidate control sequences $\{a^{(k)}_{
 \begin{equation}
   J^{(k)} = \sum_{j=0}^{H} c(\hat{s}^{(k)}_{t+j},\, a^{(k)}_{t+j}) + \lambda \max\!\big(0,\, g(\hat{s}^{(k)}_{t+j})\big),
 \end{equation}
-where $c$ penalizes deviation from a reference path and excessive control magnitude, and $g$ encodes safety constraints such as track boundaries. The final control is computed as a cost-weighted average:
+where the stage cost $c$ penalizes deviation from a reference path and excessive control magnitude, and $g$ encodes safety constraints such as track boundaries. The constraint penalty weight $\lambda$ controls the trade-off between optimality and feasibility. The final control is computed as a cost-weighted average:
 \begin{equation}
   a_t = \sum_{k=1}^K w^{(k)} a^{(k)}_t, \qquad w^{(k)} = \frac{\exp(-\gamma\, J^{(k)})}{\sum_{k'} \exp(-\gamma\, J^{(k')})},
 \end{equation}
@@ -50,3 +50,15 @@ where $x^{l}_{k \mid t}$ and $u^{l}_{k \mid t}$ denote predicted states and inpu
 
 \paragraph{Integration with Learned Models.}
 Each of the seven dynamics models provides the forward prediction function $f$ in the SIT-LMPC formulation~\eqref{eq:sitlmpc}. The models are trained offline on $\mathcal{D}_{\text{train}}$ and deployed for online prediction without further adaptation. At each control cycle, the controller queries the dynamics model with the current state and candidate actions, rolls out trajectories utilizing the model, applies the terminal constraint derived from the learned safe set, and computes the cost-weighted optimal control. The models remain fixed during deployment, testing the robustness and generalization of each architecture from offline training data to online control under constrained real-time conditions.
+
+\section{Evaluation Objective}
+\label{sec:eval-objective}
+
+Given the learned model $\hat{f}$ and a model-based controller $\pi$, the control-level objective is to minimize cumulative cost while enforcing safety:
+\begin{equation}
+  \min_{\pi,\, \hat{f}} \;\mathbb{E}\!\left[\sum_{t=0}^{T} c(s_t, a_t)\right]
+  \label{eq:eval-objective}
+\end{equation}
+subject to state constraints $s_t \in \mathcal{X}$, input constraints $a_t \in \mathcal{U}$, and safety constraints $g(s_t, a_t) \le 0$, where $c$ is the stage cost and $T$ is the task horizon. Both the MPPI and SIT-LMPC formulations instantiate this objective: MPPI approximates it via sampling over a finite horizon, and SIT-LMPC extends it across iterations with terminal safety guarantees.
+
+Evaluation proceeds in two stages. First, open-loop prediction accuracy is measured on held-out trajectories to assess how well each model captures terrain-dependent dynamics. Second, closed-loop control performance is evaluated by deploying each model within the MPPI and SIT-LMPC controllers, measuring lap time, tracking error, and constraint satisfaction. This two-stage protocol separates predictive fidelity from downstream control utility, because a model that achieves low prediction error does not necessarily yield effective closed-loop behavior.

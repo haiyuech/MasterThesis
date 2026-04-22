@@ -2,11 +2,10 @@
 \providecommand\babel@aux[2]{}
 \@nameuse{bbl@beforestart}
 \providecommand\hyper@newdestlabel[2]{}
-\providecommand*\HyPL@Entry[1]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
 \bibstyle{ieeetr}
-\HyPL@Entry{0<</S/D>>}
 \babel@aux{american}{}
-\HyPL@Entry{1<</S/r /St 2>>}
 \@writefile{toc}{\contentsline {chapter}{ACKNOWLEDGEMENT}{ii}{chapter*.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{ABSTRACT}{iii}{chapter*.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{LIST OF TABLES}{vii}{section*.3}\protected@file@percent }
@@ -19,7 +18,6 @@
 \citation{karnan2022vi}
 \citation{williams2017information,salzmann2023real}
 \citation{lu2025decremental}
-\HyPL@Entry{7<</S/D>>}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -44,158 +42,135 @@
 \citation{spielberg2019neural}
 \citation{zhai2025neural,peng2025transformer}
 \citation{xiao2021learning,datar2024learning}
+\citation{kabzan2019learning}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Kinodynamics Modeling}{5}{section.7}\protected@file@percent }
 \newlabel{sec:rw-kinodynamics}{{2.2}{5}{Kinodynamics Modeling}{section.7}{}}
-\citation{kabzan2019learning}
 \citation{radford2021learning}
 \citation{caron2021emerging,oquab2023dinov2}
 \citation{kang2024clip,zhou2024dino}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Vision Foundation Models for Robotics}{6}{section.8}\protected@file@percent }
 \newlabel{sec:rw-vision}{{2.3}{6}{Vision Foundation Models for Robotics}{section.8}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Problem Formulation}{8}{chapter.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Problem Formulation}{7}{chapter.9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{sec:problem}{{3}{8}{Problem Formulation}{chapter.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}System Dynamics}{8}{section.10}\protected@file@percent }
-\newlabel{eq:true-dynamics}{{3.1}{8}{System Dynamics}{equation.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Control Policy}{8}{section.12}\protected@file@percent }
-\newlabel{eq:policy}{{3.2}{8}{Control Policy}{equation.13}{}}
-\newlabel{eq:policy-constraints}{{3.3}{8}{Control Policy}{equation.14}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Training Dataset}{9}{section.15}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Model Learning Problem}{9}{section.17}\protected@file@percent }
-\newlabel{eq:learned-model}{{3.5}{9}{Model Learning Problem}{equation.18}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Evaluation Objective}{10}{section.20}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Model Architectures}{11}{chapter.22}\protected@file@percent }
+\newlabel{sec:problem}{{3}{7}{Problem Formulation}{chapter.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}System Dynamics}{7}{section.10}\protected@file@percent }
+\newlabel{eq:true-dynamics}{{3.1}{7}{System Dynamics}{equation.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Observations and Dataset}{8}{section.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Context-Conditioned Dynamics Modeling}{8}{section.14}\protected@file@percent }
+\newlabel{eq:learned-model}{{3.3}{8}{Context-Conditioned Dynamics Modeling}{equation.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Learning Objective}{9}{section.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Model Structure}{10}{section.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Model Architectures}{11}{chapter.20}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{sec:models}{{4}{11}{Model Architectures}{chapter.22}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Fixed-Parameter Physics Models}{12}{section.23}\protected@file@percent }
-\newlabel{sec:fixed}{{4.1}{12}{Fixed-Parameter Physics Models}{section.23}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Default Single-Track Model (DST)}{12}{subsection.24}\protected@file@percent }
-\newlabel{sec:dst}{{4.1.1}{12}{Default Single-Track Model (DST)}{subsection.24}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Default Time-Varying Linear Model (DTVL)}{13}{subsection.27}\protected@file@percent }
-\newlabel{sec:dtvl}{{4.1.2}{13}{Default Time-Varying Linear Model (DTVL)}{subsection.27}{}}
-\newlabel{eq:tvl}{{4.3}{13}{Default Time-Varying Linear Model (DTVL)}{equation.28}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Physics-Informed Learned Models (PIVOT)}{13}{section.29}\protected@file@percent }
-\newlabel{sec:physics-learned}{{4.2}{13}{Physics-Informed Learned Models (PIVOT)}{section.29}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Learned Single-Track Model (LST)}{13}{subsection.30}\protected@file@percent }
-\newlabel{sec:lst}{{4.2.1}{13}{Learned Single-Track Model (LST)}{subsection.30}{}}
-\newlabel{eq:lst-augment}{{4.4}{13}{Learned Single-Track Model (LST)}{equation.31}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Learned Time-Varying Linear Model (LTVL)}{14}{subsection.34}\protected@file@percent }
-\newlabel{sec:ltvl}{{4.2.2}{14}{Learned Time-Varying Linear Model (LTVL)}{subsection.34}{}}
-\newlabel{eq:ltvl}{{4.7}{14}{Learned Time-Varying Linear Model (LTVL)}{equation.35}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Purely Data-Driven Models}{15}{section.38}\protected@file@percent }
-\newlabel{sec:data-driven}{{4.3}{15}{Purely Data-Driven Models}{section.38}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Multi-Layer Perceptron (MLP)}{15}{subsection.39}\protected@file@percent }
-\newlabel{sec:mlp}{{4.3.1}{15}{Multi-Layer Perceptron (MLP)}{subsection.39}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Long Short-Term Memory Network (LSTM)}{15}{subsection.41}\protected@file@percent }
-\newlabel{sec:lstm}{{4.3.2}{15}{Long Short-Term Memory Network (LSTM)}{subsection.41}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Temporal Convolutional Network (TCN)}{16}{subsection.44}\protected@file@percent }
-\newlabel{sec:tcn}{{4.3.3}{16}{Temporal Convolutional Network (TCN)}{subsection.44}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Summary of the seven dynamics models evaluated in this work. LST and LTVL are the proposed PIVOT models; the remaining five serve as baselines. Physics-informed models leverage known dynamics equations, while data-driven models learn the full state-derivative mapping from data. Temporal models incorporate past state-action history.}}{17}{table.caption.46}\protected@file@percent }
+\newlabel{sec:models}{{4}{11}{Model Architectures}{chapter.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Fixed-Parameter Physics Models}{12}{section.21}\protected@file@percent }
+\newlabel{sec:fixed}{{4.1}{12}{Fixed-Parameter Physics Models}{section.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Default Single-Track Model (DST)}{12}{subsection.22}\protected@file@percent }
+\newlabel{sec:dst}{{4.1.1}{12}{Default Single-Track Model (DST)}{subsection.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Default Time-Varying Linear Model (DTVL)}{13}{subsection.25}\protected@file@percent }
+\newlabel{sec:dtvl}{{4.1.2}{13}{Default Time-Varying Linear Model (DTVL)}{subsection.25}{}}
+\newlabel{eq:tvl}{{4.3}{13}{Default Time-Varying Linear Model (DTVL)}{equation.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Physics-Informed Learned Models (PIVOT)}{13}{section.27}\protected@file@percent }
+\newlabel{sec:physics-learned}{{4.2}{13}{Physics-Informed Learned Models (PIVOT)}{section.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Learned Single-Track Model (LST)}{13}{subsection.28}\protected@file@percent }
+\newlabel{sec:lst}{{4.2.1}{13}{Learned Single-Track Model (LST)}{subsection.28}{}}
+\newlabel{eq:lst-augment}{{4.4}{13}{Learned Single-Track Model (LST)}{equation.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Learned Time-Varying Linear Model (LTVL)}{14}{subsection.32}\protected@file@percent }
+\newlabel{sec:ltvl}{{4.2.2}{14}{Learned Time-Varying Linear Model (LTVL)}{subsection.32}{}}
+\newlabel{eq:ltvl}{{4.7}{14}{Learned Time-Varying Linear Model (LTVL)}{equation.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Purely Data-Driven Models}{15}{section.36}\protected@file@percent }
+\newlabel{sec:data-driven}{{4.3}{15}{Purely Data-Driven Models}{section.36}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Multi-Layer Perceptron (MLP)}{15}{subsection.37}\protected@file@percent }
+\newlabel{sec:mlp}{{4.3.1}{15}{Multi-Layer Perceptron (MLP)}{subsection.37}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Long Short-Term Memory Network (LSTM)}{15}{subsection.39}\protected@file@percent }
+\newlabel{sec:lstm}{{4.3.2}{15}{Long Short-Term Memory Network (LSTM)}{subsection.39}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Temporal Convolutional Network (TCN)}{16}{subsection.42}\protected@file@percent }
+\newlabel{sec:tcn}{{4.3.3}{16}{Temporal Convolutional Network (TCN)}{subsection.42}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Summary of the seven dynamics models evaluated in this work. LST and LTVL are the proposed PIVOT models; the remaining five serve as baselines. Physics-informed models leverage known dynamics equations, while data-driven models learn the full state-derivative mapping from data. Temporal models incorporate past state-action history.}}{17}{table.caption.44}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:models}{{4.1}{17}{Summary of the seven dynamics models evaluated in this work. LST and LTVL are the proposed PIVOT models; the remaining five serve as baselines. Physics-informed models leverage known dynamics equations, while data-driven models learn the full state-derivative mapping from data. Temporal models incorporate past state-action history}{table.caption.46}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Parameter counts for each learned model. All models share the same 858K-parameter backbone; the output layer scales with the number of predicted dynamics parameters. The LST model requires only 8 outputs, keeping total parameters near the backbone size, while the LSTM requires 19,141 outputs, inflating the total to 5.8M and increasing overfitting risk.}}{17}{table.caption.47}\protected@file@percent }
-\newlabel{tab:param-counts}{{4.2}{17}{Parameter counts for each learned model. All models share the same 858K-parameter backbone; the output layer scales with the number of predicted dynamics parameters. The LST model requires only 8 outputs, keeping total parameters near the backbone size, while the LSTM requires 19,141 outputs, inflating the total to 5.8M and increasing overfitting risk}{table.caption.47}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Control and Evaluation Framework}{18}{chapter.48}\protected@file@percent }
+\newlabel{tab:models}{{4.1}{17}{Summary of the seven dynamics models evaluated in this work. LST and LTVL are the proposed PIVOT models; the remaining five serve as baselines. Physics-informed models leverage known dynamics equations, while data-driven models learn the full state-derivative mapping from data. Temporal models incorporate past state-action history}{table.caption.44}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.2}{\ignorespaces Parameter counts for each learned model. All models share the same 858K-parameter backbone; the output layer scales with the number of predicted dynamics parameters. The LST model requires only 8 outputs, keeping total parameters near the backbone size, while the LSTM requires 19,141 outputs, inflating the total to 5.8M and increasing overfitting risk.}}{17}{table.caption.45}\protected@file@percent }
+\newlabel{tab:param-counts}{{4.2}{17}{Parameter counts for each learned model. All models share the same 858K-parameter backbone; the output layer scales with the number of predicted dynamics parameters. The LST model requires only 8 outputs, keeping total parameters near the backbone size, while the LSTM requires 19,141 outputs, inflating the total to 5.8M and increasing overfitting risk}{table.caption.45}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Control and Evaluation Framework}{18}{chapter.46}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{sec:control}{{5}{18}{Control and Evaluation Framework}{chapter.48}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Sampling-Based MPC (MPPI)}{18}{section.49}\protected@file@percent }
-\newlabel{sec:mppi}{{5.1}{18}{Sampling-Based MPC (MPPI)}{section.49}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Safe Information-Theoretic Learning MPC (SIT-LMPC)}{19}{section.52}\protected@file@percent }
-\newlabel{sec:sitlmpc}{{5.2}{19}{Safe Information-Theoretic Learning MPC (SIT-LMPC)}{section.52}{}}
-\newlabel{eq:sitlmpc}{{5.4}{20}{Safe Information-Theoretic Learning MPC (SIT-LMPC)}{equation.54}{}}
-\@writefile{toc}{\contentsline {paragraph}{Integration with Learned Models.}{20}{paragraph*.60}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Experiments}{21}{chapter.61}\protected@file@percent }
+\newlabel{sec:control}{{5}{18}{Control and Evaluation Framework}{chapter.46}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Sampling-Based MPC (MPPI)}{18}{section.47}\protected@file@percent }
+\newlabel{sec:mppi}{{5.1}{18}{Sampling-Based MPC (MPPI)}{section.47}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Safe Information-Theoretic Learning MPC (SIT-LMPC)}{19}{section.50}\protected@file@percent }
+\newlabel{sec:sitlmpc}{{5.2}{19}{Safe Information-Theoretic Learning MPC (SIT-LMPC)}{section.50}{}}
+\newlabel{eq:sitlmpc}{{5.4}{20}{Safe Information-Theoretic Learning MPC (SIT-LMPC)}{equation.52}{}}
+\@writefile{toc}{\contentsline {paragraph}{Integration with Learned Models.}{20}{paragraph*.58}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Evaluation Objective}{21}{section.59}\protected@file@percent }
+\newlabel{sec:eval-objective}{{5.3}{21}{Evaluation Objective}{section.59}{}}
+\newlabel{eq:eval-objective}{{5.5}{21}{Evaluation Objective}{equation.60}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Experiments}{22}{chapter.61}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{sec:experiments}{{6}{21}{Experiments}{chapter.61}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Hardware Setup and Data Collection}{21}{section.62}\protected@file@percent }
-\newlabel{sec:hardware}{{6.1}{21}{Hardware Setup and Data Collection}{section.62}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Platform}{21}{subsection.63}\protected@file@percent }
-\newlabel{sec:platform}{{6.1.1}{21}{Platform}{subsection.63}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Nominal Parameters of the 1/5th-Scale RC Car Platform}}{22}{table.caption.64}\protected@file@percent }
-\newlabel{tab:params}{{6.1}{22}{Nominal Parameters of the 1/5th-Scale RC Car Platform}{table.caption.64}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Data Collection}{22}{subsection.65}\protected@file@percent }
-\newlabel{sec:datacollection}{{6.1.2}{22}{Data Collection}{subsection.65}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Offline Trajectory Prediction}{23}{section.66}\protected@file@percent }
-\newlabel{sec:offline}{{6.2}{23}{Offline Trajectory Prediction}{section.66}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Evaluation Protocol and Metrics}{23}{subsection.67}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Results}{24}{subsection.68}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Physics-informed models outperform purely data-driven approaches on real-world data.}{24}{paragraph*.69}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Nonlinear physics structure provides a stronger inductive bias than linear structure.}{25}{paragraph*.70}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Physics structure mitigates dependence on visual features.}{26}{paragraph*.71}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Computational Cost}{26}{section.73}\protected@file@percent }
-\newlabel{sec:compute}{{6.3}{26}{Computational Cost}{section.73}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Offline trajectory prediction results ($N = 9$ step horizon, lower is better). Pose loss is reported across train/val/test splits; the Gap column (test/train ratio) quantifies generalization. Per-dimension test losses reveal which state components each model struggles with. The LST model achieves the lowest test loss, the smallest generalization gap, and robust performance even without visual features.}}{27}{table.caption.72}\protected@file@percent }
-\newlabel{tab:offline-results}{{6.2}{27}{Offline trajectory prediction results ($N = 9$ step horizon, lower is better). Pose loss is reported across train/val/test splits; the Gap column (test/train ratio) quantifies generalization. Per-dimension test losses reveal which state components each model struggles with. The LST model achieves the lowest test loss, the smallest generalization gap, and robust performance even without visual features}{table.caption.72}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Control-loop latency ($\mu $s): PIVOT (parameter network invoked once, then lightweight dynamics rollout) vs.\ a direct approach (large network at every rollout step with 399-dim input). PIVOT rollouts operate on 17--1,717 parameters per step; direct rollouts propagate 357K--738K parameters per step. All values averaged over 5,000 JIT-compiled calls on an NVIDIA RTX A6000.}}{28}{table.caption.74}\protected@file@percent }
-\newlabel{tab:latency}{{6.3}{28}{Control-loop latency ($\mu $s): PIVOT (parameter network invoked once, then lightweight dynamics rollout) vs.\ a direct approach (large network at every rollout step with 399-dim input). PIVOT rollouts operate on 17--1,717 parameters per step; direct rollouts propagate 357K--738K parameters per step. All values averaged over 5,000 JIT-compiled calls on an NVIDIA RTX A6000}{table.caption.74}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Closed-Loop Control}{28}{section.75}\protected@file@percent }
-\newlabel{sec:closedloop}{{6.4}{28}{Closed-Loop Control}{section.75}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{29}{chapter.76}\protected@file@percent }
+\newlabel{sec:experiments}{{6}{22}{Experiments}{chapter.61}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Hardware Setup and Data Collection}{22}{section.62}\protected@file@percent }
+\newlabel{sec:hardware}{{6.1}{22}{Hardware Setup and Data Collection}{section.62}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Platform}{22}{subsection.63}\protected@file@percent }
+\newlabel{sec:platform}{{6.1.1}{22}{Platform}{subsection.63}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Nominal Parameters of the 1/5th-Scale RC Car Platform}}{23}{table.caption.64}\protected@file@percent }
+\newlabel{tab:params}{{6.1}{23}{Nominal Parameters of the 1/5th-Scale RC Car Platform}{table.caption.64}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Data Collection}{23}{subsection.65}\protected@file@percent }
+\newlabel{sec:datacollection}{{6.1.2}{23}{Data Collection}{subsection.65}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Offline Trajectory Prediction}{24}{section.66}\protected@file@percent }
+\newlabel{sec:offline}{{6.2}{24}{Offline Trajectory Prediction}{section.66}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Evaluation Protocol and Metrics}{24}{subsection.67}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Results}{25}{subsection.68}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Physics-informed models outperform purely data-driven approaches on real-world data.}{25}{paragraph*.69}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Nonlinear physics structure provides a stronger inductive bias than linear structure.}{26}{paragraph*.70}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Physics structure mitigates dependence on visual features.}{27}{paragraph*.71}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Computational Cost}{27}{section.73}\protected@file@percent }
+\newlabel{sec:compute}{{6.3}{27}{Computational Cost}{section.73}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.2}{\ignorespaces Offline trajectory prediction results ($N = 9$ step horizon, lower is better). Pose loss is reported across train/val/test splits; the Gap column (test/train ratio) quantifies generalization. Per-dimension test losses reveal which state components each model struggles with. The LST model achieves the lowest test loss, the smallest generalization gap, and robust performance even without visual features.}}{28}{table.caption.72}\protected@file@percent }
+\newlabel{tab:offline-results}{{6.2}{28}{Offline trajectory prediction results ($N = 9$ step horizon, lower is better). Pose loss is reported across train/val/test splits; the Gap column (test/train ratio) quantifies generalization. Per-dimension test losses reveal which state components each model struggles with. The LST model achieves the lowest test loss, the smallest generalization gap, and robust performance even without visual features}{table.caption.72}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.3}{\ignorespaces Control-loop latency ($\mu $s): PIVOT (parameter network invoked once, then lightweight dynamics rollout) vs.\ a direct approach (large network at every rollout step with 399-dim input). PIVOT rollouts operate on 17--1,717 parameters per step; direct rollouts propagate 357K--738K parameters per step. All values averaged over 5,000 JIT-compiled calls on an NVIDIA RTX A6000.}}{29}{table.caption.74}\protected@file@percent }
+\newlabel{tab:latency}{{6.3}{29}{Control-loop latency ($\mu $s): PIVOT (parameter network invoked once, then lightweight dynamics rollout) vs.\ a direct approach (large network at every rollout step with 399-dim input). PIVOT rollouts operate on 17--1,717 parameters per step; direct rollouts propagate 357K--738K parameters per step. All values averaged over 5,000 JIT-compiled calls on an NVIDIA RTX A6000}{table.caption.74}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Closed-Loop Control}{29}{section.75}\protected@file@percent }
+\newlabel{sec:closedloop}{{6.4}{29}{Closed-Loop Control}{section.75}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusion}{30}{chapter.76}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{bibliography}
-\bibcite{borrelli2012predictive}{{1}{}{{}}{{}}}
-\bibcite{hewing2020learning}{{2}{}{{}}{{}}}
-\bibcite{rajamani2011vehicle}{{3}{}{{}}{{}}}
-\bibcite{kabzan2019learning}{{4}{}{{}}{{}}}
-\bibcite{punjani2015deep}{{5}{}{{}}{{}}}
-\bibcite{liniger2015optimization}{{6}{}{{}}{{}}}
-\bibcite{diehl2002real}{{7}{}{{}}{{}}}
-\bibcite{amrit2011fast}{{8}{}{{}}{{}}}
-\bibcite{kong2015kinematic}{{9}{}{{}}{{}}}
-\bibcite{verschueren2021acados}{{10}{}{{}}{{}}}
-\bibcite{subosits2019racetrack}{{11}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{BIBLIOGRAPHY}{30}{section*.77}\protected@file@percent }
+\bibcite{williams2017model}{{1}{}{{}}{{}}}
+\bibcite{williams2018information}{{2}{}{{}}{{}}}
+\bibcite{xiao2021learning}{{3}{}{{}}{{}}}
+\bibcite{han2024dynamics}{{4}{}{{}}{{}}}
+\bibcite{lee2023learning}{{5}{}{{}}{{}}}
+\bibcite{levy2025meta}{{6}{}{{}}{{}}}
+\bibcite{datar2024terrain}{{7}{}{{}}{{}}}
+\bibcite{karnan2022vi}{{8}{}{{}}{{}}}
+\bibcite{williams2017information}{{9}{}{{}}{{}}}
+\bibcite{salzmann2023real}{{10}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{BIBLIOGRAPHY}{31}{section*.77}\protected@file@percent }
 \@writefile{toc}{\setcounter {tocdepth}{0}}
-\bibcite{mayne2005robust}{{12}{}{{}}{{}}}
-\bibcite{villanueva2017robust}{{13}{}{{}}{{}}}
-\bibcite{goh2019toward}{{14}{}{{}}{{}}}
-\bibcite{williams2017information}{{15}{}{{}}{{}}}
-\bibcite{wagener2019online}{{16}{}{{}}{{}}}
-\bibcite{williams2016aggressive}{{17}{}{{}}{{}}}
-\bibcite{drews2019vision}{{18}{}{{}}{{}}}
-\bibcite{pinneri2021sample}{{19}{}{{}}{{}}}
-\bibcite{bristow2006survey}{{20}{}{{}}{{}}}
-\bibcite{rosolia2017learning}{{21}{}{{}}{{}}}
-\bibcite{rosolia2019learning}{{22}{}{{}}{{}}}
-\bibcite{yin2022safe}{{23}{}{{}}{{}}}
-\bibcite{pravitra2020information}{{24}{}{{}}{{}}}
-\bibcite{pacejka2012tire}{{25}{}{{}}{{}}}
-\bibcite{svendenius2005brush}{{26}{}{{}}{{}}}
-\bibcite{brunner2017sim}{{27}{}{{}}{{}}}
-\bibcite{kaufmann2020deep}{{28}{}{{}}{{}}}
-\bibcite{hou2020data}{{29}{}{{}}{{}}}
-\bibcite{lenz2015deep}{{30}{}{{}}{{}}}
-\bibcite{d2020recurrent}{{31}{}{{}}{{}}}
-\bibcite{chen2018neural}{{32}{}{{}}{{}}}
-\bibcite{finzi2020simplifying}{{33}{}{{}}{{}}}
-\bibcite{asadi2019combating}{{34}{}{{}}{{}}}
-\bibcite{ajgl2020gray}{{35}{}{{}}{{}}}
-\bibcite{ostafew2016robust}{{36}{}{{}}{{}}}
-\bibcite{lee2020learning}{{37}{}{{}}{{}}}
-\bibcite{corke2023robotics}{{38}{}{{}}{{}}}
-\bibcite{broggi2013terrain}{{39}{}{{}}{{}}}
-\bibcite{stano2022terrain}{{40}{}{{}}{{}}}
-\bibcite{bojarski2016end}{{41}{}{{}}{{}}}
-\bibcite{codevilla2018end}{{42}{}{{}}{{}}}
-\bibcite{muller2018driving}{{43}{}{{}}{{}}}
-\bibcite{bommasani2021opportunities}{{44}{}{{}}{{}}}
-\bibcite{radford2021learning}{{45}{}{{}}{{}}}
-\bibcite{he2020momentum}{{46}{}{{}}{{}}}
-\bibcite{he2022masked}{{47}{}{{}}{{}}}
-\bibcite{caron2021emerging}{{48}{}{{}}{{}}}
-\bibcite{oquab2023dinov2}{{49}{}{{}}{{}}}
-\bibcite{amir2021deep}{{50}{}{{}}{{}}}
-\bibcite{frey2023locomotion}{{51}{}{{}}{{}}}
-\bibcite{kahn2021badgr}{{52}{}{{}}{{}}}
-\bibcite{seo2023scenepic}{{53}{}{{}}{{}}}
-\bibcite{srinivasan2020end}{{54}{}{{}}{{}}}
-\bibcite{nitsche2022fast}{{55}{}{{}}{{}}}
-\bibcite{maturko2022vision}{{56}{}{{}}{{}}}
-\bibcite{xiao2022learning}{{57}{}{{}}{{}}}
+\bibcite{lu2025decremental}{{11}{}{{}}{{}}}
+\bibcite{MAYNE2000789}{{12}{}{{}}{{}}}
+\bibcite{williams2018robust}{{13}{}{{}}{{}}}
+\bibcite{rosolia2017learning}{{14}{}{{}}{{}}}
+\bibcite{zang2025sit}{{15}{}{{}}{{}}}
+\bibcite{ames2019control}{{16}{}{{}}{{}}}
+\bibcite{hafner2019learning}{{17}{}{{}}{{}}}
+\bibcite{zhai2026pa}{{18}{}{{}}{{}}}
+\bibcite{xiao2022learning}{{19}{}{{}}{{}}}
+\bibcite{kong2015kinematic}{{20}{}{{}}{{}}}
+\bibcite{rajamani2006vehicle}{{21}{}{{}}{{}}}
+\bibcite{pacejka2005tire}{{22}{}{{}}{{}}}
+\bibcite{de1995new}{{23}{}{{}}{{}}}
+\bibcite{spielberg2019neural}{{24}{}{{}}{{}}}
+\bibcite{zhai2025neural}{{25}{}{{}}{{}}}
+\bibcite{peng2025transformer}{{26}{}{{}}{{}}}
+\bibcite{datar2024learning}{{27}{}{{}}{{}}}
+\bibcite{kabzan2019learning}{{28}{}{{}}{{}}}
+\bibcite{radford2021learning}{{29}{}{{}}{{}}}
+\bibcite{caron2021emerging}{{30}{}{{}}{{}}}
+\bibcite{oquab2023dinov2}{{31}{}{{}}{{}}}
+\bibcite{kang2024clip}{{32}{}{{}}{{}}}
+\bibcite{zhou2024dino}{{33}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\gdef \@abspage@last{42}
+\gdef \@abspage@last{41}

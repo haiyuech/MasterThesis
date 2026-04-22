@@ -1,63 +1,97 @@
 \chapter{Problem Formulation}
 \label{sec:problem}
 
-Consider a discrete-time controlled dynamical system. Let $t \in \mathbb{N}$ index discrete time steps, $s_t \in \mathcal{S} \subset \mathbb{R}^{n_s}$ denote the system state, and $a_t \in \mathcal{A} \subset \mathbb{R}^{n_a}$ the control input.
+This chapter formulates the dynamics modeling problem considered in this work. The formulation captures environmental variability, specifies the available observations, and defines a trajectory-level predictive learning objective.
 
 \section{System Dynamics}
 
-The true system evolves according to unknown nonlinear dynamics:
+Consider a discrete-time controlled dynamical system. Let $t \in \mathbb{N}$ index discrete time steps, $s_t \in \mathcal{S} \subset \mathbb{R}^{n_s}$ denote the system state, and $a_t \in \mathcal{A} \subset \mathbb{R}^{n_a}$ denote the control input.
+
+In off-road driving scenarios, system dynamics depend not only on the current state and control input, but also on environmental factors such as terrain properties and tire--ground interaction. These factors are not directly observable and are modeled as a latent variable $c_t \in \mathcal{C}$.
+
+The system evolves according to:
 \begin{equation}
-  s_{t+1} = f^*(s_t, a_t) + w_t, \qquad w_t \sim \mathcal{W},
+  s_{t+1} = f^*(s_t, a_t;\, c_t) + w_t, \qquad w_t \sim \mathcal{W},
   \label{eq:true-dynamics}
 \end{equation}
-where $f^*: \mathcal{S} \times \mathcal{A} \to \mathcal{S}$ is the true (unknown) dynamics function and $w_t$ represents process noise. The objective is to learn an approximate model $\hat{f}$ from data for predictive control.
+where $f^*: \mathcal{S} \times \mathcal{A} \times \mathcal{C} \to \mathcal{S}$ is the unknown dynamics function and $w_t$ represents process noise.
 
-\section{Control Policy}
+Because the environmental variable $c_t$ is not directly measurable, its effect on system dynamics must be inferred indirectly. The learned models considered in this work are deterministic approximations of the underlying stochastic dynamics.
 
-At each time step, a model predictive controller generates actions according to
+\section{Observations and Dataset}
+
+In addition to state and control measurements, auxiliary observations are available, which provide indirect information about the latent environmental variable $c_t$. These observations may include high-dimensional sensory inputs.
+
+An offline dataset of trajectory segments is assumed:
 \begin{equation}
-  a_t = \pi(s_t,\, \hat{f}) \in \mathcal{A},
-  \label{eq:policy}
+  \mathcal{D}_{\text{train}} =
+  \left\{
+  \big(s_{t:t+H}^{(i)},\, a_{t:t+H-1}^{(i)},\, \xi^{(i)}\big)
+  \right\}_{i=1}^{N},
 \end{equation}
-where $\hat{f}$ represents the learned dynamics model employed for prediction within the MPC optimization. The policy must satisfy actuation limits, safety constraints, and rate limits:
+where $H$ denotes the prediction horizon, and $\xi^{(i)}$ denotes context features associated with the beginning of the $i$-th trajectory segment.
+
+Each tuple corresponds to a trajectory segment collected under a particular environmental condition. The horizon $H$ is chosen to match the rollout length used during downstream planning.
+
+The dataset is collected from the physical system under varying environmental conditions and remains fixed for all models. Auxiliary observations are available for models that condition parameters on environmental context, but are not required by fixed-parameter baselines.
+
+\section{Context-Conditioned Dynamics Modeling}
+
+The objective is to learn a predictive model of the system dynamics that accounts for environmental variability.
+
+Models of the following form are considered:
 \begin{equation}
-  a_t \in \mathcal{U}(s_t),
-  \qquad
-  g(s_t, a_t) \le 0,
-  \qquad
-  \|a_t - a_{t-1}\| \le \Delta_{\max},
-  \label{eq:policy-constraints}
-\end{equation}
-where $\mathcal{U}(s_t)$ defines state-dependent input bounds, $g$ encodes safety constraints (e.g., track boundaries, stability margins), and $\Delta_{\max}$ limits the control rate of change.
-
-\section{Training Dataset}
-
-An offline dataset of system trajectories is assumed available:
-\begin{equation}
-  \mathcal{D}_{\text{train}} = \{(s_\tau, a_\tau, s_{\tau+1})\}_{\tau=1}^{N},
-\end{equation}
-consisting of state-action-next-state tuples collected from the physical system. This dataset is collected once and remains fixed for training all models, constraining the comparison to model expressiveness rather than data availability.
-
-\section{Model Learning Problem}
-
-The central objective is to identify the model structure $\hat{f}$ that, when learned from $\mathcal{D}_{\text{train}}$, most effectively enables predictive control.
-
-Models of the form
-\begin{equation}
-  \hat{s}_{t+1} = \hat{f}(s_t, a_t;\, \phi),
+  \hat{s}_{t+1} = \hat{f}(s_t, a_t;\, \phi^{(i)}),
   \label{eq:learned-model}
 \end{equation}
-are considered, where $\phi$ represents learnable parameters. The model structure $\hat{f}$ ranges from fixed parametric physics-based equations, to physics-augmented models with state-dependent corrections, to fully learned function approximators with minimal structural constraints.
+where $\hat{f}$ denotes a parameterized dynamics model whose structure is specified a priori, and $\phi^{(i)}$ denotes model parameters associated with the $i$-th trajectory segment.
 
-All models minimize prediction error on $\mathcal{D}_{\text{train}}$:
+The formulation assumes a Markovian representation, while allowing practical implementations to maintain additional internal state.
+
+The parameter $\phi^{(i)}$ may be either constant or context-dependent. Context-dependent parameterizations allow the model to adapt to changes in the underlying environmental conditions.
+
+To incorporate contextual information, $\phi^{(i)}$ is modeled as a function of context features:
 \begin{equation}
-  \phi^* = \arg\min_\phi \;\mathbb{E}_{(s,a,s') \in \mathcal{D}_{\text{train}}}\!\left[\mathcal{L}\big(s',\, \hat{f}(s, a;\, \phi)\big)\right].
+  \phi^{(i)} = \psi(\xi^{(i)}),
 \end{equation}
+where $\psi$ is a mapping from context features to model parameters.
 
-\section{Evaluation Objective}
+For each trajectory segment, the parameter vector $\phi^{(i)}$ is estimated once and reused across the prediction horizon.
 
-The learned model $\hat{f}$ is ultimately evaluated based on its utility for control, not prediction accuracy alone. Given the learned model and a model-based controller $\pi$, the objective is to maximize task performance while enforcing safety:
+Given a choice of $\hat{f}$, the learning problem reduces to estimating the corresponding parameters. Depending on the model class, these parameters may be directly optimized or produced by the mapping $\psi$.
+
+\section{Learning Objective}
+
+All models are trained to minimize trajectory-level prediction error:
 \begin{equation}
-  \min_{\pi,\, \hat{f}} \;\mathbb{E}\!\left[\sum_{t=0}^{T} c(s_t, a_t)\right]
+  \min_{\Theta} \;
+  \mathbb{E}_{(s_{t:t+H}, a_{t:t+H-1}, \xi) \sim \mathcal{D}_{\text{train}}}
+  \left[
+    \sum_{k=1}^{H}
+    \mathcal{L}\big(
+      s_{t+k},\,
+      \hat{s}_{t+k}
+    \big)
+  \right],
 \end{equation}
-subject to safety constraints $g(s_t, a_t) \le 0$ and control constraints~\eqref{eq:policy-constraints}, where $c$ is a stage cost (e.g., progress toward goal, lap time) and $T$ is the task horizon. This formulation underscores that the model yielding the lowest prediction error does not necessarily produce the best control performance, a distinction that motivates the two-stage evaluation adopted in this work.
+where $\hat{s}_{t+k}$ is obtained by rolling out the model over the prediction horizon.
+
+The optimization variable $\Theta$ denotes the set of learnable quantities. For fixed-parameter models, $\Theta$ corresponds to model parameters. For context-conditioned models, $\Theta$ denotes the parameters of the mapping $\psi$.
+
+This objective captures compounding prediction errors over the prediction horizon.
+
+\section{Model Structure}
+
+Different modeling approaches correspond to different choices of the function $\hat{f}$ and different assumptions on the structure of $\phi^{(i)}$.
+
+Three categories of models are considered:
+
+\begin{itemize}
+\item \textbf{Fixed-parameter models:} $\phi^{(i)} \equiv \phi$ for all $i$, where $\phi$ is a constant parameter vector shared across all trajectory segments.
+
+\item \textbf{Physics-informed models:} $\phi^{(i)}$ represents low-dimensional quantities that encode prior knowledge about system dynamics, corresponding to structured parameterizations.
+
+\item \textbf{Purely data-driven models:} $\phi^{(i)}$ parameterizes high-capacity function approximators with minimal structural constraints, corresponding to flexible parameterizations.
+\end{itemize}
+
+This formulation enables a controlled comparison of different model structures under identical data and training conditions.
